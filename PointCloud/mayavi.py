@@ -7,10 +7,11 @@ from mpl_toolkits.mplot3d import Axes3D
 from PIL import Image
 
 
-data = tifffile.imread('/Users/robertgijsbers/Desktop/20190701--2/20190701--20119.tif')
+data = tifffile.imread('/Users/robertgijsbers/Desktop/20190701--2/20190701--20119.tif') #path name to tiff file goes here
 # volume = np.array(data)
 im = Image.open('/Users/robertgijsbers/Desktop/20190701--2/20190701--20119.tif')
-num_layers, height, width = 8, 512, 512
+
+num_layers, height, width = 8, 512, 512 #initialize number of layers, height and width
 
 imarray = np.array(data)
 # print(imarray.shape)

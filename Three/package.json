@@ -1,15 +1,24 @@
 {
-  "name": "own",
+  "name": "zebrafishualizer",
   "version": "1.0.0",
-  "description": "",
+  "description": "3D visualizer of moving immune cells in zebrafish. (bachelor end project)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "luckey-Luuk",
   "license": "ISC",
   "dependencies": {
-    "dat.gui": "^0.7.9"
-  }
+    "dat.gui": "^0.7.9",
+    "three": "^0.152.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckey-Luuk/Zebrafishualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luckey-Luuk/Zebrafishualizer/issues"
+  },
+  "homepage": "https://github.com/luckey-Luuk/Zebrafishualizer#readme"
 }

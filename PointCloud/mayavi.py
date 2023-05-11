@@ -2,13 +2,13 @@ import numpy as np
 import tifffile
 import matplotlib.pyplot as plt
 import trimesh
+from trimesh.voxel.ops import points_to_marching_cubes
 
 data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #path name to tiff file goes here
 
 imarray = np.array(data)
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
 grayscale_threshold = 200
-
 
 point_clouds = []
 colors = []  # List to store RGB colors
@@ -36,10 +36,17 @@ ax.scatter(combined_point_cloud[:, 0], combined_point_cloud[:, 1], combined_poin
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
+
+# Set aspect ratio for each axis
+ax.set_box_aspect([height, width, num_layers])
+
 plt.show()
 
 # Create a trimesh object
-mesh = trimesh.Trimesh(vertices=combined_point_cloud)
+mesh = points_to_marching_cubes(combined_point_cloud)
+
+# Assign colors to mesh vertices
+mesh.visual.vertex_colors = colors / 255.0
 
 # Save the mesh as an OBJ file
 output_file = "point_cloud.obj"

@@ -2,9 +2,9 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // Import objects
-const assetLoader = new GLTFLoader();
+const loader = new GLTFLoader();
 const monkeyUrl = new URL('../assets/monkey.glb', import.meta.url);
 
 // Create basic scene elements
@@ -33,6 +33,14 @@ scene.add(gridHelper);
 
 
 // Main body
+loader.load(monkeyUrl.href,  //aanpassen naar juiste object
+    function(gltf){
+        const model = gltf.scene;
+        scene.add(model);
+        model.position.set(-12, 4, 10);
+    }, undefined, function(error){
+    console.error(error);
+});
 
 
 // // Create options gui

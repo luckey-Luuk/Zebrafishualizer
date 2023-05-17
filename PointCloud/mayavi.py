@@ -1,8 +1,8 @@
 import numpy as np
 import tifffile
 import matplotlib.pyplot as plt
-import trimesh
-from trimesh.voxel.ops import points_to_marching_cubes
+# import trimesh
+# from trimesh.voxel.ops import points_to_marching_cubes
 import pyvista
 
 data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #path name to tiff file goes here
@@ -45,19 +45,14 @@ ax.set_box_aspect([height, width, num_layers])
 
 pdata = pyvista.PolyData(combined_point_cloud)
 pdata['orig_sphere'] = np.arange(1132)
-sphere = pyvista.Sphere(radius=0.25) # if you change the radius the size of the spheres change
+sphere = pyvista.Sphere(radius=0.5) # if you change the radius the size of the spheres change
 pc = pdata.glyph(scale=False, geom=sphere, orient=False)
 pl = pyvista.Plotter()
-_ = pl.add_mesh(
-    pc,
-    cmap='reds',
-    smooth_shading=True,
-    show_scalar_bar=False,
-)
+_ = pl.add_mesh(pc, cmap='reds', smooth_shading=True, show_scalar_bar=False)
 pl.export_gltf('balls.gltf')  
 pl.show()
 
-block = pyvista.read('balls.gltf') #these 3 lines show the underlying mesh of the gltf object (here they are the same as the original)
+block = pyvista.read('balls.gltf') # these 3 lines show the underlying mesh of the gltf object (here they are the same as the original)
 mesh = block[0][0][0]
 mesh.plot(color='tan', show_edges=True, cpos='xy')
 
@@ -65,17 +60,8 @@ mesh.plot(color='tan', show_edges=True, cpos='xy')
 cloud = pyvista.PolyData(combined_point_cloud)
 cloud.plot()
 
-volume = cloud.delaunay_3d(alpha=3)
+# here the mesh is made from the point cloud. 
+volume = cloud.delaunay_3d(alpha=2.5) # The alpha variable dictates how close the ponts have to be to get connedted
 shell = volume.extract_geometry()
+shell.save('mesh.stl')
 shell.plot()
-
-
-# # Create a trimesh object
-# mesh = points_to_marching_cubes(combined_point_cloud)
-
-# # Assign colors to mesh vertices
-# mesh.visual.vertex_colors = colors / 255.0
-
-# # Save the mesh as an OBJ file
-# output_file = "point_cloud.gltf"
-# mesh.export(output_file)

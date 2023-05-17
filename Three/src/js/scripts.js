@@ -5,7 +5,7 @@ import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // Import objects
 const loader = new GLTFLoader();
-const monkeyUrl = new URL('../assets/balls.gltf', import.meta.url);
+const gltfUrl = new URL('../assets/biggerballs.gltf', import.meta.url);
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
@@ -26,7 +26,7 @@ const orbit = new OrbitControls(camera, renderer.domElement);
 orbit.update();
 
 // Add grid
-const gridHelper = new THREE.GridHelper(500);
+const gridHelper = new THREE.GridHelper(500, 20);
 scene.add(gridHelper);
 
 // Add lights
@@ -40,7 +40,7 @@ scene.add(lightHelper);
 
 
 // Main body
-loader.load(monkeyUrl.href,  //aanpassen naar juiste object
+loader.load(gltfUrl.href,  //aanpassen naar juiste object
     function(object){
         const model = object.scene;
 
@@ -61,7 +61,6 @@ loader.load(monkeyUrl.href,  //aanpassen naar juiste object
 
 // Add options gui
 const gui = new dat.GUI();
-// dat.GUI.toggleHide();
 const options = {
     gridHelper: false,
     ambientLightIntensity: 0.5,
@@ -74,10 +73,11 @@ const options = {
 gui.add(options, 'gridHelper');
 gui.add(options, 'ambientLightIntensity', 0, 1);
 gui.add(options, 'mainLightIntensity', 0, 5);
-gui.add(options, 'mainLightX', -500, 500);
+gui.add(options, 'mainLightX', -250, 250);
 gui.add(options, 'mainLightY', -50, 50);
-gui.add(options, 'mainLightZ', -500, 500);
+gui.add(options, 'mainLightZ', -250, 250);
 gui.add(options, 'mainLightHelper');
+gui.close();
 
 
 // Animation loop

@@ -2,10 +2,11 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
+import {STLLoader} from 'three/examples/jsm/loaders/STLLoader.js';
 // Import objects
-const loader = new GLTFLoader();
-const gltfUrl = new URL('../assets/biggerballs.gltf', import.meta.url);
+const loader = new STLLoader();
+const modelUrl = new URL('../assets/mesh.stl', import.meta.url);
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
@@ -39,23 +40,35 @@ const lightHelper = new THREE.PointLightHelper(mainLight);
 scene.add(lightHelper);
 
 
-// Main body
-loader.load(gltfUrl.href,  //aanpassen naar juiste object
-    function(object){
-        const model = object.scene;
+// Add model
+// //gltf
+// loader.load(modelUrl.href,
+//     function(object){
+//         const model = object.scene;
 
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+
+//         model.traverse(function(child){
+//             if(child.isMesh){
+//                 child.material = material;
+//             }
+//         });
+
+//         scene.add(model);
+//     }, undefined, function(error){
+//     console.error(error);
+// });
+
+//stl
+loader.load(modelUrl,
+    function (geometry) {
         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+        const mesh = new THREE.Mesh(geometry, material);
 
-        model.traverse(function(child){
-            if(child.isMesh){
-                child.material = material;
-            }
-        });
-
-        scene.add(model);
-        // mainLight.target = model;
-    }, undefined, function(error){
-    console.error(error);
+        mesh.rotation.x = Math.PI / 2;
+        scene.add(mesh);
+    }, undefined, function (error) {
+        console.error(error);
 });
 
 

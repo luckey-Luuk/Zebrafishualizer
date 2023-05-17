@@ -5,7 +5,7 @@ import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 // Import objects
 const loader = new GLTFLoader();
-const monkeyUrl = new URL('../assets/monkey.glb', import.meta.url);
+const monkeyUrl = new URL('../assets/balls.gltf', import.meta.url);
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();

@@ -65,7 +65,7 @@ loader.load(modelUrl,
         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
         const mesh = new THREE.Mesh(geometry, material);
 
-        mesh.rotation.x = Math.PI / 2;
+        mesh.rotation.x = -Math.PI / 2;
         scene.add(mesh);
     }, undefined, function (error) {
         console.error(error);
@@ -76,10 +76,10 @@ loader.load(modelUrl,
 const gui = new dat.GUI();
 const options = {
     gridHelper: false,
-    ambientLightIntensity: 0.5,
-    mainLightIntensity: 3,
+    ambientLightIntensity: 0.1,
+    mainLightIntensity: 2,
     mainLightX: 0,
-    mainLightY: 0,
+    mainLightY: 25,
     mainLightZ: 0,
     mainLightHelper: false
 };

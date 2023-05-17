@@ -41,11 +41,11 @@ ax.set_zlabel('Z')
 # Set aspect ratio for each axis
 ax.set_box_aspect([height, width, num_layers])
 
-plt.show()
+# plt.show()
 
 pdata = pyvista.PolyData(combined_point_cloud)
 pdata['orig_sphere'] = np.arange(1132)
-sphere = pyvista.Sphere(radius=0.5)
+sphere = pyvista.Sphere(radius=0.25) # if you change the radius the size of the spheres change
 pc = pdata.glyph(scale=False, geom=sphere, orient=False)
 pl = pyvista.Plotter()
 _ = pl.add_mesh(
@@ -57,13 +57,25 @@ _ = pl.add_mesh(
 pl.export_gltf('balls.gltf')  
 pl.show()
 
+block = pyvista.read('balls.gltf') #these 3 lines show the underlying mesh of the gltf object (here they are the same as the original)
+mesh = block[0][0][0]
+mesh.plot(color='tan', show_edges=True, cpos='xy')
 
-# Create a trimesh object
-mesh = points_to_marching_cubes(combined_point_cloud)
+# points is a 3D numpy array (n_points, 3) coordinates of a sphere
+cloud = pyvista.PolyData(combined_point_cloud)
+cloud.plot()
 
-# Assign colors to mesh vertices
-mesh.visual.vertex_colors = colors / 255.0
+volume = cloud.delaunay_3d(alpha=3)
+shell = volume.extract_geometry()
+shell.plot()
 
-# Save the mesh as an OBJ file
-output_file = "point_cloud.gltf"
-mesh.export(output_file)
+
+# # Create a trimesh object
+# mesh = points_to_marching_cubes(combined_point_cloud)
+
+# # Assign colors to mesh vertices
+# mesh.visual.vertex_colors = colors / 255.0
+
+# # Save the mesh as an OBJ file
+# output_file = "point_cloud.gltf"
+# mesh.export(output_file)

@@ -18,24 +18,24 @@ const camera = new THREE.PerspectiveCamera(
     45,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    5000
 );
-camera.position.set(-10, 30, 30);
+camera.position.set(0, 800, 0);
 
 const orbit = new OrbitControls(camera, renderer.domElement);
 orbit.update();
 
 // Add grid
-const gridHelper = new THREE.GridHelper(30);
+const gridHelper = new THREE.GridHelper(500);
 scene.add(gridHelper);
 
 // Add lights
 const ambientLight = new THREE.AmbientLight('white');
 scene.add(ambientLight);
 
-const mainLight = new THREE.DirectionalLight('white');
+const mainLight = new THREE.PointLight('white');
 scene.add(mainLight);
-const lightHelper = new THREE.DirectionalLightHelper(mainLight);
+const lightHelper = new THREE.PointLightHelper(mainLight);
 scene.add(lightHelper);
 
 
@@ -61,21 +61,22 @@ loader.load(monkeyUrl.href,  //aanpassen naar juiste object
 
 // Add options gui
 const gui = new dat.GUI();
+// dat.GUI.toggleHide();
 const options = {
-    gridHelper: true,
+    gridHelper: false,
     ambientLightIntensity: 0.5,
     mainLightIntensity: 3,
     mainLightX: 0,
-    mainLightY: 10,
+    mainLightY: 0,
     mainLightZ: 0,
     mainLightHelper: false
 };
 gui.add(options, 'gridHelper');
 gui.add(options, 'ambientLightIntensity', 0, 1);
 gui.add(options, 'mainLightIntensity', 0, 5);
-gui.add(options, 'mainLightX', -10, 10);
-gui.add(options, 'mainLightY', -10, 10);
-gui.add(options, 'mainLightZ', -10, 10);
+gui.add(options, 'mainLightX', -500, 500);
+gui.add(options, 'mainLightY', -50, 50);
+gui.add(options, 'mainLightZ', -500, 500);
 gui.add(options, 'mainLightHelper');
 
 

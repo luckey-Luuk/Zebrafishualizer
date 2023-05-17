@@ -3,14 +3,11 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-// import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // Import objects
 const loader = new GLTFLoader();
-// const loader = new OBJLoader();
 const monkeyUrl = new URL('../assets/monkey.glb', import.meta.url);
-// loader.setPath('../assets/');
 
-// Create basic scene elements
+// Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -28,18 +25,15 @@ camera.position.set(-10, 30, 30);
 const orbit = new OrbitControls(camera, renderer.domElement);
 orbit.update();
 
-// Create helpers
-const axesHelper = new THREE.AxesHelper(5);
-scene.add(axesHelper);
+// Add grid
 const gridHelper = new THREE.GridHelper(30);
 scene.add(gridHelper);
 
 // Add lights
-const ambientLight = new THREE.AmbientLight('white', 1);
+const ambientLight = new THREE.AmbientLight('white');
 scene.add(ambientLight);
 
-const mainLight = new THREE.DirectionalLight('white', 3);
-mainLight.position.set(10, 10, 10);
+const mainLight = new THREE.DirectionalLight('white');
 scene.add(mainLight);
 const lightHelper = new THREE.DirectionalLightHelper(mainLight);
 scene.add(lightHelper);
@@ -59,24 +53,43 @@ loader.load(monkeyUrl.href,  //aanpassen naar juiste object
         });
 
         scene.add(model);
+        // mainLight.target = model;
     }, undefined, function(error){
     console.error(error);
 });
-// loader.load('test_rock.obj', function(object){
-    // scene.add(object);
-// });
 
 
-// // Create options gui
-// const gui = new dat.GUI();
-// const options = {
-
-// };
-// gui.add(options, ...);
+// Add options gui
+const gui = new dat.GUI();
+const options = {
+    gridHelper: true,
+    ambientLightIntensity: 0.5,
+    mainLightIntensity: 3,
+    mainLightX: 0,
+    mainLightY: 10,
+    mainLightZ: 0,
+    mainLightHelper: false
+};
+gui.add(options, 'gridHelper');
+gui.add(options, 'ambientLightIntensity', 0, 1);
+gui.add(options, 'mainLightIntensity', 0, 5);
+gui.add(options, 'mainLightX', -10, 10);
+gui.add(options, 'mainLightY', -10, 10);
+gui.add(options, 'mainLightZ', -10, 10);
+gui.add(options, 'mainLightHelper');
 
 
 // Animation loop
 function animate(time) {
+    gridHelper.visible = options.gridHelper;
+
+    ambientLight.intensity = options.ambientLightIntensity;
+
+    mainLight.intensity = options.mainLightIntensity;
+    mainLight.position.set(options.mainLightX, options.mainLightY, options.mainLightZ);
+    lightHelper.visible = options.mainLightHelper;
+
+
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);

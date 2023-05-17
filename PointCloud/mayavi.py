@@ -3,6 +3,7 @@ import tifffile
 import matplotlib.pyplot as plt
 import trimesh
 from trimesh.voxel.ops import points_to_marching_cubes
+import pyvista
 
 data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #path name to tiff file goes here
 
@@ -42,6 +43,21 @@ ax.set_box_aspect([height, width, num_layers])
 
 plt.show()
 
+pdata = pyvista.PolyData(combined_point_cloud)
+pdata['orig_sphere'] = np.arange(1132)
+sphere = pyvista.Sphere(radius=0.5)
+pc = pdata.glyph(scale=False, geom=sphere, orient=False)
+pl = pyvista.Plotter()
+_ = pl.add_mesh(
+    pc,
+    cmap='reds',
+    smooth_shading=True,
+    show_scalar_bar=False,
+)
+pl.export_gltf('balls.gltf')  
+pl.show()
+
+
 # Create a trimesh object
 mesh = points_to_marching_cubes(combined_point_cloud)
 
@@ -49,5 +65,5 @@ mesh = points_to_marching_cubes(combined_point_cloud)
 mesh.visual.vertex_colors = colors / 255.0
 
 # Save the mesh as an OBJ file
-output_file = "point_cloud.obj"
+output_file = "point_cloud.gltf"
 mesh.export(output_file)

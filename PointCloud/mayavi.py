@@ -8,6 +8,7 @@ import pyvista
 data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #path name to tiff file goes here
 
 imarray = np.array(data)
+#here you could do the intrapolation of the data still/again
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
 grayscale_threshold = 200
 

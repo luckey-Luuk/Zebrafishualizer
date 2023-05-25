@@ -7,6 +7,12 @@ import {STLLoader} from 'three/examples/jsm/loaders/STLLoader.js';
 // Import objects
 const loader = new STLLoader();
 const modelUrl = new URL('../assets/mesh.stl', import.meta.url);
+const modelUrl_t0 = new URL('../assets/mesh_t0.stl', import.meta.url);
+const modelUrl_t1 = new URL('../assets/mesh_t1.stl', import.meta.url);
+const modelUrl_t2 = new URL('../assets/mesh_t2.stl', import.meta.url);
+const modelUrl_t3 = new URL('../assets/mesh_t3.stl', import.meta.url);
+const modelUrl_t4 = new URL('../assets/mesh_t4.stl', import.meta.url);
+const modelUrl_t5 = new URL('../assets/mesh_t5.stl', import.meta.url);
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
@@ -60,7 +66,62 @@ scene.add(lightHelper);
 // });
 
 //stl
-loader.load(modelUrl,
+// loader.load(modelUrl_t0,
+//     function (geometry) {
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+//         const mesh = new THREE.Mesh(geometry, material);
+
+//         mesh.rotation.x = -Math.PI / 2;
+//         scene.add(mesh);
+//     }, undefined, function (error) {
+//         console.error(error);
+// });
+
+// loader.load(modelUrl_t1,
+//     function (geometry) {
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+//         const mesh = new THREE.Mesh(geometry, material);
+
+//         mesh.rotation.x = -Math.PI / 2;
+//         scene.add(mesh);
+//     }, undefined, function (error) {
+//         console.error(error);
+// });
+
+// loader.load(modelUrl_t2,
+//     function (geometry) {
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+//         const mesh = new THREE.Mesh(geometry, material);
+
+//         mesh.rotation.x = -Math.PI / 2;
+//         scene.add(mesh);
+//     }, undefined, function (error) {
+//         console.error(error);
+// });
+
+// loader.load(modelUrl_t3,
+//     function (geometry) {
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+//         const mesh = new THREE.Mesh(geometry, material);
+
+//         mesh.rotation.x = -Math.PI / 2;
+//         scene.add(mesh);
+//     }, undefined, function (error) {
+//         console.error(error);
+// });
+
+// loader.load(modelUrl_t4,
+//     function (geometry) {
+//         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+//         const mesh = new THREE.Mesh(geometry, material);
+
+//         mesh.rotation.x = -Math.PI / 2;
+//         scene.add(mesh);
+//     }, undefined, function (error) {
+//         console.error(error);
+// });
+
+loader.load(modelUrl_t5,
     function (geometry) {
         const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
         const mesh = new THREE.Mesh(geometry, material);
@@ -70,7 +131,6 @@ loader.load(modelUrl,
     }, undefined, function (error) {
         console.error(error);
 });
-
 
 // Add options gui
 const gui = new dat.GUI();
@@ -107,6 +167,41 @@ function animate(time) {
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
+
+// Making a slideshow
+var i=0;
+var timesteps = [];
+var time = 1000;
+
+timestep[0] = modelUrl_t0;
+timestep[1] = modelUrl_t1;
+timestep[2] = modelUrl_t2;
+
+function ChangeTimestep(){
+    loader.load(timestep[i],
+        function (geometry) {
+            const material = new THREE.MeshStandardMaterial({color: 0x00ff00});
+            const mesh = new THREE.Mesh(geometry, material);
+    
+            mesh.rotation.x = -Math.PI / 2;
+            scene.add(mesh);
+        }, undefined, function (error) {
+            console.error(error);
+    });
+
+    if(i < timestep.length - 1){
+        i++;
+        console.log(i);
+    }
+    else{
+        i = 0;
+    }
+    setTimeout("ChangeTimestep()", time)
+}
+
+window.onload = ChangeTimestep;
+
+
 
 // Update view when window is resized
 window.addEventListener('resize', function() {

@@ -169,13 +169,16 @@ function animate(time) {
 renderer.setAnimationLoop(animate);
 
 // Making a slideshow
-var i=0;
-var timesteps = [];
-var time = 1000;
+let i=0;
+let timestep = [];
+const time = 3000;
 
 timestep[0] = modelUrl_t0;
 timestep[1] = modelUrl_t1;
 timestep[2] = modelUrl_t2;
+timestep[3] = modelUrl_t3;
+timestep[4] = modelUrl_t4;
+timestep[5] = modelUrl_t5;
 
 function ChangeTimestep(){
     loader.load(timestep[i],
@@ -191,12 +194,12 @@ function ChangeTimestep(){
 
     if(i < timestep.length - 1){
         i++;
-        console.log(i);
+        // console.log(i);
     }
     else{
         i = 0;
     }
-    setTimeout("ChangeTimestep()", time)
+    setTimeout(ChangeTimestep(), time)
 }
 
 window.onload = ChangeTimestep;

@@ -1,8 +1,10 @@
 import numpy as np
 import tifffile
-import pyvista
+import pyvista as pv
 
-data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #path name to tiff file goes here
+# data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #8 layers
+data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20000.tif') #29 layers
+# data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a/20190701--20000_M3a_Step92.tif') #29 layers labeled
 
 imarray = np.array(data)
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
@@ -23,10 +25,10 @@ for z in range(num_layers):
 combined_point_cloud = np.concatenate(point_clouds)
 
 # points is a 3D numpy array (n_points, 3) coordinates of a sphere
-cloud = pyvista.PolyData(combined_point_cloud)
+cloud = pv.PolyData(combined_point_cloud)
 
 # here the mesh is made from the point cloud. 
-volume = cloud.delaunay_3d(alpha=3) # The alpha variable dictates how close the ponts have to be to get connedted
-shell = volume.extract_geometry()
-shell.save('mesh.stl')
-# shell.plot() # uncomment this line to see the mesh in python
+volume = cloud.delaunay_3d(alpha=3.5).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
+# volume = pv.wrap(combined_point_cloud).reconstruct_surface()
+# volume.save('mesh.stl')
+volume.plot() # uncomment this line to see the mesh in python

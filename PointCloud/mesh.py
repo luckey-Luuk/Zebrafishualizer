@@ -8,13 +8,15 @@ data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29l
 
 imarray = np.array(data)
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
-grayscale_threshold = 200
+# num_layers, height, width, id = imarray.shape[0], imarray.shape[1], imarray.shape[2], imarray.shape[3] # initialize number of layers, height and width
+# height, width = imarray.shape[0], imarray.shape[1] # initialize number of layers, height and width
+grayscale_threshold = 0
 
 point_clouds = []
 
 for z in range(num_layers):
     layer = imarray[z, :, :]
-    matching_pixels = np.where(layer >= grayscale_threshold)
+    matching_pixels = np.where(layer > grayscale_threshold)
     point_cloud = np.column_stack(matching_pixels)
     point_cloud = point_cloud.astype(float)  # Convert to float to handle non-integer coordinates
     point_cloud[:, 0] -= height / 2
@@ -28,7 +30,7 @@ combined_point_cloud = np.concatenate(point_clouds)
 cloud = pv.PolyData(combined_point_cloud)
 
 # here the mesh is made from the point cloud. 
-volume = cloud.delaunay_3d(alpha=3.5).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
+volume = cloud.delaunay_3d(alpha=10).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
 # volume = pv.wrap(combined_point_cloud).reconstruct_surface()
 # volume.save('mesh.stl')
 volume.plot() # uncomment this line to see the mesh in python

@@ -2,56 +2,50 @@ import numpy as np
 import tifffile
 import pyvista as pv
 
+
+#Read tiff file
 # data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #8 layers
 data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20000.tif') #29 layers
 # data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a/20190701--20000_M3a_Step92.tif') #29 layers labeled
 
-imarray = np.array(data)
-# print(imarray.shape)
+imarray = np.array(data) # convert tiff file to numpy array
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
-# num_layers, height, width, id = imarray.shape[0], imarray.shape[1], imarray.shape[2], imarray.shape[3] # initialize number of layers, height and width
-# height, width = imarray.shape[0], imarray.shape[1] # initialize number of layers, height and width
-grayscale_threshold = 0
 
+
+#Create point cloud
 point_clouds = []
-
+grayscale_threshold = 0
 for z in range(num_layers):
-    layer = imarray[z, :, :]
-    matching_pixels = np.where(layer > grayscale_threshold)
-    point_cloud = np.column_stack(matching_pixels)
+    layer = imarray[z, :, :] # select layer
+    matching_pixels = np.where(layer > grayscale_threshold) # find pixels that are not black
+    point_cloud = np.column_stack(matching_pixels) # add pixels to point cloud
     point_cloud = point_cloud.astype(float)  # Convert to float to handle non-integer coordinates
     point_cloud[:, 0] -= height / 2
     point_cloud[:, 1] -= width / 2
     point_cloud = np.hstack((point_cloud, np.full((point_cloud.shape[0], 1), z)))  # Add z-coordinate
     point_clouds.append(point_cloud)
 
-combined_point_cloud = np.concatenate(point_clouds)
+cloud = pv.PolyData(np.concatenate(point_clouds)) # combine layers into one and convert to polydata
 
-# points is a 3D numpy array (n_points, 3) coordinates of a sphere
-cloud = pv.PolyData(combined_point_cloud)
 
-# here the mesh is made from the point cloud. 
-mesh = cloud.delaunay_3d(alpha=2).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
-# mesh = pv.wrap(combined_point_cloud).reconstruct_surface()
+#Create mesh
+mesh = cloud.delaunay_3d(alpha=2).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
+# mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
 # mesh.save('mesh.stl')
-# mesh.plot() # uncomment this line to see the mesh in python
+# mesh.plot()
 
 conn = mesh.connectivity(largest=False) # get connectivity of mesh
 # conn.plot()
-conn.save('conn.stl')
+# conn.save('conn.stl')
 
-# sized = conn.compute_cell_sizes()
-# cell_volumes = sized.cell_data['Volume']
-# print(cell_volumes)
-
-# surface = conn.extract_surface()
+# surface = conn.extract_surface() # use (poisson?) surface reconstruction on connectivity (has no effect)
+# surface.save('surface.stl')
 # surface.plot()
 
-bodies = conn.split_bodies()
+bodies = conn.split_bodies() # seperate cells
 bodiesPolyData = bodies.as_polydata_blocks()
 for body in bodiesPolyData:
-    print(body)
-    if body.n_cells > 1:
+    if body.n_cells > 1: # filter degenerate bodies
         # body.plot()
-        body.save('body'+str(bodiesPolyData.index(body))+'.stl')
+        # body.save('body'+str(bodiesPolyData.index(body))+'.stl')
 # bodies.plot()

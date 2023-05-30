@@ -31,11 +31,27 @@ combined_point_cloud = np.concatenate(point_clouds)
 cloud = pv.PolyData(combined_point_cloud)
 
 # here the mesh is made from the point cloud. 
-mesh = cloud.delaunay_3d(alpha=10).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
+mesh = cloud.delaunay_3d(alpha=2).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
 # mesh = pv.wrap(combined_point_cloud).reconstruct_surface()
 # mesh.save('mesh.stl')
 # mesh.plot() # uncomment this line to see the mesh in python
 
 conn = mesh.connectivity(largest=False) # get connectivity of mesh
-conn.plot()
+# conn.plot()
 conn.save('conn.stl')
+
+# sized = conn.compute_cell_sizes()
+# cell_volumes = sized.cell_data['Volume']
+# print(cell_volumes)
+
+# surface = conn.extract_surface()
+# surface.plot()
+
+bodies = conn.split_bodies()
+bodiesPolyData = bodies.as_polydata_blocks()
+for body in bodiesPolyData:
+    print(body)
+    if body.n_cells > 1:
+        # body.plot()
+        body.save('body'+str(bodiesPolyData.index(body))+'.stl')
+# bodies.plot()

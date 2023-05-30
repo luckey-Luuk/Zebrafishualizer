@@ -19,6 +19,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// Add variables
 let currentMesh;
 let stlPaths = [];
 stlPaths[0] = modelUrl_t0;
@@ -28,8 +29,6 @@ stlPaths[3] = modelUrl_t3;
 stlPaths[4] = modelUrl_t4;
 stlPaths[5] = modelUrl_t5;
 let currentStlIndex = 0;
-
-// Create a clock for timing
 const clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
@@ -69,8 +68,9 @@ const options = {
     mainLightZ: 0,
     mainLightHelper: false,
     timeStepDelay: 1,
-    pause: true
+    isPaused: false
 };
+
 gui.add(options, 'gridHelper');
 gui.add(options, 'ambientLightIntensity', 0, 1);
 gui.add(options, 'mainLightIntensity', 0, 5);
@@ -78,13 +78,16 @@ gui.add(options, 'mainLightX', -250, 250);
 gui.add(options, 'mainLightY', -50, 50);
 gui.add(options, 'mainLightZ', -250, 250);
 gui.add(options, 'mainLightHelper');
-gui.add(options, 'timeStepDelay', 0.1, 10);
-gui.add(options, 'pause');
+gui.add(options, 'timeStepDelay', 0.1, 2 ,0.1);
+gui.add(options, 'isPaused');
 gui.close();
 
 
 // Animation loop
 function animate(time) {
+    // Check if the animation is paused
+    if (options.isPaused) return;
+
     gridHelper.visible = options.gridHelper;
 
     ambientLight.intensity = options.ambientLightIntensity;

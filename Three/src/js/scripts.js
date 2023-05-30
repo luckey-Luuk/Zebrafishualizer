@@ -92,9 +92,7 @@ function animate(time) {
 
     renderer.render(scene, camera);
 
-    const delta = clock.getDelta();
-
-    clock.startTime;
+    const delta = clock.getDelta(); // start the clock
     if (clock.elapsedTime >= 3) {
         currentStlIndex = (currentStlIndex + 1) % stlPaths.length; // Increment the index and loop back if necessary
         loadSTL(stlPaths[currentStlIndex]);

@@ -15,3 +15,4 @@ def open_track_dictionary(save_file):
 tracksavedir = "Data/3D tracking data to visualize/"
 
 refdistance8 = open_track_dictionary(tracksavedir + "refdistance_29layer_linkage.pkl")
+print(refdistance8["20190701--2"])

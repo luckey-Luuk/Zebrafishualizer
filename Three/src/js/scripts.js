@@ -6,7 +6,7 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 import {STLLoader} from 'three/examples/jsm/loaders/STLLoader.js';
 // Import objects
 const loader = new STLLoader();
-const modelUrl = new URL('../assets/mesh.stl', import.meta.url);
+const modelUrl = new URL('../assets/conn.stl', import.meta.url);
 const modelUrl_t0 = new URL('../assets/mesh_t0.stl', import.meta.url);
 const modelUrl_t1 = new URL('../assets/mesh_t1.stl', import.meta.url);
 const modelUrl_t2 = new URL('../assets/mesh_t2.stl', import.meta.url);
@@ -23,7 +23,7 @@ document.body.appendChild(renderer.domElement);
 let currentMesh;
 let stlPaths = [];
 stlPaths[0] = modelUrl_t0;
-stlPaths[1] = modelUrl_t1;
+stlPaths[1] = modelUrl;
 stlPaths[2] = modelUrl_t2;
 stlPaths[3] = modelUrl_t3;
 stlPaths[4] = modelUrl_t4;
@@ -85,8 +85,6 @@ gui.close();
 
 // Animation loop
 function animate(time) {
-    // Check if the animation is paused
-    if (options.isPaused) return;
 
     gridHelper.visible = options.gridHelper;
 
@@ -100,6 +98,14 @@ function animate(time) {
     renderer.render(scene, camera);
 
     const delta = clock.getDelta(); // start the clock
+
+    if (options.isPaused){
+        options.timeStepDelay = 1000
+    }
+    if (options.isPaused == false){
+        clock.start
+    }
+
     if (clock.elapsedTime >= options.timeStepDelay) {
         currentStlIndex = (currentStlIndex + 1) % stlPaths.length; // Increment the index and loop back if necessary
         loadSTL(stlPaths[currentStlIndex]);

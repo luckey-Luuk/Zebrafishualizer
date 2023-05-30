@@ -67,7 +67,9 @@ const options = {
     mainLightX: 0,
     mainLightY: 25,
     mainLightZ: 0,
-    mainLightHelper: false
+    mainLightHelper: false,
+    timeStepDelay: 1,
+    pause: true
 };
 gui.add(options, 'gridHelper');
 gui.add(options, 'ambientLightIntensity', 0, 1);
@@ -76,6 +78,8 @@ gui.add(options, 'mainLightX', -250, 250);
 gui.add(options, 'mainLightY', -50, 50);
 gui.add(options, 'mainLightZ', -250, 250);
 gui.add(options, 'mainLightHelper');
+gui.add(options, 'timeStepDelay', 0.1, 10);
+gui.add(options, 'pause');
 gui.close();
 
 
@@ -93,13 +97,15 @@ function animate(time) {
     renderer.render(scene, camera);
 
     const delta = clock.getDelta(); // start the clock
-    if (clock.elapsedTime >= 3) {
+    if (clock.elapsedTime >= options.timeStepDelay) {
         currentStlIndex = (currentStlIndex + 1) % stlPaths.length; // Increment the index and loop back if necessary
         loadSTL(stlPaths[currentStlIndex]);
         clock.start(); // Reset the clock
     }
 }
-renderer.setAnimationLoop(animate);
+
+ renderer.setAnimationLoop(animate);
+
 
 function loadSTL(stlPath) {
     // Remove the previous mesh, if any

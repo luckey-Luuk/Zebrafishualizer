@@ -7,6 +7,7 @@ data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29l
 # data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a/20190701--20000_M3a_Step92.tif') #29 layers labeled
 
 imarray = np.array(data)
+# print(imarray.shape)
 num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
 # num_layers, height, width, id = imarray.shape[0], imarray.shape[1], imarray.shape[2], imarray.shape[3] # initialize number of layers, height and width
 # height, width = imarray.shape[0], imarray.shape[1] # initialize number of layers, height and width
@@ -30,7 +31,11 @@ combined_point_cloud = np.concatenate(point_clouds)
 cloud = pv.PolyData(combined_point_cloud)
 
 # here the mesh is made from the point cloud. 
-volume = cloud.delaunay_3d(alpha=10).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
-# volume = pv.wrap(combined_point_cloud).reconstruct_surface()
-# volume.save('mesh.stl')
-volume.plot() # uncomment this line to see the mesh in python
+mesh = cloud.delaunay_3d(alpha=10).extract_geometry() # The alpha variable dictates how close the ponts have to be to get connedted
+# mesh = pv.wrap(combined_point_cloud).reconstruct_surface()
+# mesh.save('mesh.stl')
+# mesh.plot() # uncomment this line to see the mesh in python
+
+conn = mesh.connectivity(largest=False) # get connectivity of mesh
+conn.plot()
+conn.save('conn.stl')

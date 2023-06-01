@@ -15,14 +15,13 @@ from mpl_toolkits.mplot3d import Axes3D
 
 
 frames = []
-i = [f"{i:03}" for i in range(5)] # 5 has to be 120 for the full thing
+i = [f"{i:03}" for i in range(30)] # the number in the range() function has to be 120 to get every timestep
 
 for element in i:
-    image_path = f"/Users/robertgijsbers/Desktop/Repository_github/Zebrafishualizer/Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif"
-    # image_path = f"Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif"
+    # image_path = f"/Users/robertgijsbers/Desktop/Repository_github/Zebrafishualizer/Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif"
+    image_path = f"Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif"
     image = Image.open(image_path)
     frames.append(image)
-
 
 
 with imageio.get_writer('output.mp4', mode='I', fps=30) as writer:
@@ -34,8 +33,8 @@ with imageio.get_writer('output.mp4', mode='I', fps=30) as writer:
         ax.imshow(frame)
 
         file_number = i[frame_counter]
-        data = tifffile.imread(f"/Users/robertgijsbers/Desktop/Repository_github/Zebrafishualizer/Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{file_number}.tif")
-        # data = tifffile.imread(f"Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif")
+        # data = tifffile.imread(f"/Users/robertgijsbers/Desktop/Repository_github/Zebrafishualizer/Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{file_number}.tif")
+        data = tifffile.imread(f"Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20{element}.tif")
 
         imarray = np.array(data)
         num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width

@@ -1,6 +1,10 @@
 import numpy as np
 import tifffile
 import pyvista as pv
+import vtk
+import pymeshfix # won't work, when it "fixes" it gets rid of more than half of the points
+import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
+from trimesh import repair
 
 
 #Read tiff file
@@ -29,23 +33,52 @@ cloud = pv.PolyData(np.concatenate(point_clouds)) # combine layers into one and 
 
 
 #Create mesh
-mesh = cloud.delaunay_3d(alpha=2).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
+mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5, progress_bar=True).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
 # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
 # mesh.save('mesh.stl')
-# mesh.plot()
+mesh.plot()
 
-conn = mesh.connectivity(largest=False) # get connectivity of mesh
+smoother = vtk.vtkSmoothPolyDataFilter()
+smoother.SetInputData(mesh)
+smoother.SetNumberOfIterations(500)
+# Perform mesh smoothing
+smoother.Update()
+# Get the smoothed mesh
+smoothed_mesh = smoother.GetOutput()
+# Convert the VTK data to a PyVista mesh
+smoothed_mesh_pv = pv.wrap(smoothed_mesh)
+
+# Create a PyVista plotter
+plotter = pv.Plotter()
+# Add the smoothed mesh to the plotter
+plotter.add_mesh(smoothed_mesh_pv)
+# Set up the plotter and display the window
+plotter.show()
+
+
+smooth = mesh.smooth(n_iter=5000)
+# smooth.plot()
+smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
+# smooth_taubin.plot()
+
+conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
 # conn.plot()
 # conn.save('conn.stl')
-
-# surface = conn.extract_surface() # use (poisson?) surface reconstruction on connectivity (has no effect)
-# surface.save('surface.stl')
-# surface.plot()
 
 bodies = conn.split_bodies() # seperate cells
 bodiesPolyData = bodies.as_polydata_blocks()
 for body in bodiesPolyData:
     if body.n_cells > 1: # filter degenerate bodies
+
+        body.plot()
+        # vtk.vtkFillHolesFilter(body)
+        # body.plot()
+
+        # enclosed_body = body.select_enclosed_points(body, check_surface=False)
+        # # print(enclosed_body['SelectedPoints'])
+        # # print(body)
+        # print(enclosed_body)
+        # enclosed_body.plot()
         # body.plot()
         # body.save('body'+str(bodiesPolyData.index(body))+'.stl')
 # bodies.plot()

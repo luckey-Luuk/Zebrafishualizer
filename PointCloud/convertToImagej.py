@@ -1,7 +1,11 @@
+import os
 import imagej
 ij = imagej.init()
 
-directory = "C:/Users/Eigenaar/Documents/universiteit/jaar 3/Bachelor eindproject/git/Zebrafishualizer/Data/20190701--2_inter_29layers_mask/"
+source = "Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a"
+target = "Data/20190701--2_inter_29layers_mask_imagej"
 
-imp = ij.io().open("C:/Users/Eigenaar/Documents/universiteit/jaar 3/Bachelor eindproject/git/Zebrafishualizer/Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a/20190701--20000_M3a_Step92.tif")
-ij.io().save(imp, "C:/Users/Eigenaar/Documents/universiteit/jaar 3/Bachelor eindproject/git/Zebrafishualizer/Data/20190701--2_inter_29layers_mask_imagej/20190701--20000_M3a_Step92_imagej.tif")
+for filename in os.listdir(source):
+    f = os.path.join(source, filename)
+    imp = ij.io().open(f)
+    ij.io().save(imp, target + '/' + os.path.splitext(filename)[0] + "_imagej.tif")

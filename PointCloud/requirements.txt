@@ -1,0 +1,28 @@
+# Python >= 3.7
+
+NumPy
+
+tifffile
+
+pyvista
+#dependencies:
+vtk
+matplotlib
+pillow
+imageio
+pooch
+scooby
+packaging
+
+# imagej #?
+pyimagej >= 1.0.0 #?
+#dependencies:
+imglyb >= 2.0.1
+jgo >= 1.0.3
+JPype1 >= 1.3.0
+pyjnius
+labeling >= 0.1.12
+scyjava >= 1.8.0
+xarray
+setuptools
+cython

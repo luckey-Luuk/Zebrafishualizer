@@ -332,3 +332,7 @@ Thumbs.db
 
 # Parcel
 .parcel-cache/
+
+# output
+*.tif
+*.stl

@@ -21,32 +21,34 @@ for filename in os.listdir(source):
         #TODO: check if tifs have the same shape
     else:
         imarray = np.array(tifffile.imread(f)) # read tif file
-        print(imarray)
-        break
         num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
-
+        num_cells = imarray.max() # get number of cells in tif
 
        # Create point cloud
-        point_clouds = []
-        grayscale_threshold = 0
+        point_clouds = [[]] * num_cells # initialize list of point clouds
         for z in range(num_layers):
             layer = imarray[z, :, :] # select layer
-            matching_pixels = np.where(layer > grayscale_threshold) # find pixels that are not black
-            point_cloud = np.column_stack(matching_pixels) # add pixels to point cloud
-            point_cloud = point_cloud.astype(float)  # Convert to float to handle non-integer coordinates
-            point_cloud[:, 0] -= height / 2
-            point_cloud[:, 1] -= width / 2
-            point_cloud = np.hstack((point_cloud, np.full((point_cloud.shape[0], 1), z)))  # Add z-coordinate
-            point_clouds.append(point_cloud)
 
-        cloud = pv.PolyData(np.concatenate(point_clouds)) # combine layers into one and convert to polydata
+            for c in range(1, num_cells):
+                matching_pixels = np.where(layer == c) # find pixels with current cell label
+                point_cloud = np.column_stack(matching_pixels) # add pixels to point cloud
 
+                point_cloud = point_cloud.astype(float)  # convert to float to handle non-integer coordinates
+                point_cloud[:, 0] -= height / 2
+                point_cloud[:, 1] -= width / 2
+                point_cloud = np.hstack((point_cloud, np.full((point_cloud.shape[0], 1), z)))  # Add z-coordinate
+                
+                point_clouds[c-1].append(point_cloud)
+        
+        clouds = [None] * num_cells
+        for c in range(1, num_cells):
+            clouds[c-1] = pv.PolyData(np.concatenate(point_clouds[c-1])) # combine layers into one and convert to polydata
 
-    #    # Create mesh
-    #     mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
-    #     # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
-    #     # mesh.plot()
-    #     # mesh.save(target_file)
+       # Create mesh
+        mesh = clouds[0].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
+        # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
+        mesh.plot()
+        # mesh.save(target_file)
 
 
     #     # Perform mesh smoothing

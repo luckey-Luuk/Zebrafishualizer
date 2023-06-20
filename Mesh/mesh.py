@@ -8,8 +8,8 @@ import vtk
 # from trimesh import repair
 
 
-source = "Data/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
-target_folder = "Data/20190701--2_inter_29layers_mask_mesh" # folder to save mesh files
+source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
+target_folder = "Data/meshes/20190701--2_inter_29layers_mask_mesh" # folder to save mesh files
 
 for filename in os.listdir(source):
 

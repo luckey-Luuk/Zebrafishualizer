@@ -12,6 +12,7 @@ source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folde
 target_folder = "Data/meshes/20190701--2_inter_29layers_mask_mesh" # folder to save mesh files
 
 for filename in os.listdir(source):
+    target_file = target_folder + '/' + os.path.splitext(filename)[0] + "mesh.stl"
 
    # Read tif file
     f = os.path.join(source, filename) # get file path
@@ -42,7 +43,7 @@ for filename in os.listdir(source):
        # Create mesh
         mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5, progress_bar=True).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
         # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
-        # mesh.save('mesh.stl')
+        # mesh.save(target_file)
         mesh.plot()
 
         smoother = vtk.vtkSmoothPolyDataFilter()
@@ -70,7 +71,7 @@ for filename in os.listdir(source):
 
         conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
         # conn.plot()
-        # conn.save('conn.stl')
+        # conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0] + 'conn.stl')
 
         bodies = conn.split_bodies() # seperate cells
         bodiesPolyData = bodies.as_polydata_blocks()
@@ -87,5 +88,5 @@ for filename in os.listdir(source):
                 # print(enclosed_body)
                 # enclosed_body.plot()
                 # body.plot()
-                # body.save('body'+str(bodiesPolyData.index(body))+'.stl')
+                # body.save(target_folder + '/bodies' + os.path.splitext(filename)[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
         # bodies.plot()

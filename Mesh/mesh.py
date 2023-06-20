@@ -21,6 +21,8 @@ for filename in os.listdir(source):
         #TODO: check if tifs have the same shape
     else:
         imarray = np.array(tifffile.imread(f)) # read tif file
+        print(imarray)
+        break
         num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
 
 
@@ -40,57 +42,53 @@ for filename in os.listdir(source):
         cloud = pv.PolyData(np.concatenate(point_clouds)) # combine layers into one and convert to polydata
 
 
-       # Create mesh
-        mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
-        # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
-        # mesh.plot()
-        # mesh.save(target_file)
-
-        smoother = vtk.vtkSmoothPolyDataFilter()
-        smoother.SetInputData(mesh)
-        smoother.SetNumberOfIterations(500)
-        # Perform mesh smoothing
-        smoother.Update()
-        # Get the smoothed mesh
-        smoothed_mesh = smoother.GetOutput()
-        # Convert the VTK data to a PyVista mesh
-        smoothed_mesh_pv = pv.wrap(smoothed_mesh)
-
-        # Create a PyVista plotter
-        plotter = pv.Plotter()
-        # Add the smoothed mesh to the plotter
-        plotter.add_mesh(smoothed_mesh_pv)
-        # Set up the plotter and display the window
-        # plotter.show()
+    #    # Create mesh
+    #     mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
+    #     # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
+    #     # mesh.plot()
+    #     # mesh.save(target_file)
 
 
-        smooth = mesh.smooth(n_iter=5000)
-        # smooth.plot()
-        smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
-        # smooth_taubin.plot()
+    #     # Perform mesh smoothing
+    #     smoother = vtk.vtkSmoothPolyDataFilter()
+    #     smoother.SetInputData(mesh)
+    #     smoother.SetNumberOfIterations(500)
+    #     smoother.Update()
+    #     smoothed_mesh = smoother.GetOutput() # get the smoothed mesh
+    #     smoothed_mesh_pv = pv.wrap(smoothed_mesh) # convert the VTK data to a PyVista mesh
 
-        conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
-        # conn.plot()
-        # conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0].split('_')[0] + '_conn.stl')
+    #     # plotter = pv.Plotter() # create PyVista plotter
+    #     # plotter.add_mesh(smoothed_mesh_pv) # add smoothed mesh to plotter
+    #     # plotter.show()
 
-        bodies = conn.split_bodies() # seperate cells
-        bodiesPolyData = bodies.as_polydata_blocks()
-        for body in bodiesPolyData:
-            if body.n_cells > 1: # filter degenerate bodies
+    #     smooth = mesh.smooth(n_iter=5000)
+    #     # smooth.plot()
+    #     smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
+    #     # smooth_taubin.plot()
 
-                # body.plot()
-                # vtk.vtkFillHolesFilter(body)
-                # body.plot()
 
-                # enclosed_body = body.select_enclosed_points(body, check_surface=False)
-                # # print(enclosed_body['SelectedPoints'])
-                # # print(body)
-                # print(enclosed_body)
-                # enclosed_body.plot()
-                # body.plot()
-                # if not os.path.exists(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0]):
-                #     os.mkdir(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0])
-                # body.save(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
-        # bodies.plot()
+    #     conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
+    #     # conn.plot()
+    #     # conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0].split('_')[0] + '_conn.stl')
+
+    #     bodies = conn.split_bodies() # seperate cells
+    #     bodiesPolyData = bodies.as_polydata_blocks()
+    #     for body in bodiesPolyData:
+    #         if body.n_cells > 1: # filter degenerate bodies
+
+    #             body.plot()
+    #             vtk.vtkFillHolesFilter(body)
+    #             body.plot()
+
+    #             enclosed_body = body.select_enclosed_points(body, check_surface=False)
+    #             # print(enclosed_body['SelectedPoints'])
+    #             # print(body)
+    #             print(enclosed_body)
+    #             enclosed_body.plot()
+    #     #         body.plot()
+    #     #         if not os.path.exists(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0]):
+    #     #             os.mkdir(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0])
+    #     #         body.save(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
+    #     # bodies.plot()
     
-        break # uncomment to only run once
+        break # uncomment to create only 1 mesh

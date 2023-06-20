@@ -9,10 +9,10 @@ import vtk
 
 
 source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
-target_folder = "Data/meshes/20190701--2_inter_29layers_mask_mesh" # folder to save mesh files
+target_folder = "Data/meshes/20190701--2_inter_29layers_mask_meshes" # folder to save mesh files
 
 for filename in os.listdir(source):
-    target_file = target_folder + '/' + os.path.splitext(filename)[0] + "mesh.stl"
+    target_file = target_folder + '/' + os.path.splitext(filename)[0] + "_mesh.stl"
 
    # Read tif file
     f = os.path.join(source, filename) # get file path
@@ -41,10 +41,10 @@ for filename in os.listdir(source):
 
 
        # Create mesh
-        mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5, progress_bar=True).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
+        mesh = cloud.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connedted
         # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
-        # mesh.save(target_file)
-        mesh.plot()
+        # mesh.plot()
+        mesh.save(target_file)
 
         smoother = vtk.vtkSmoothPolyDataFilter()
         smoother.SetInputData(mesh)
@@ -61,7 +61,7 @@ for filename in os.listdir(source):
         # Add the smoothed mesh to the plotter
         plotter.add_mesh(smoothed_mesh_pv)
         # Set up the plotter and display the window
-        plotter.show()
+        # plotter.show()
 
 
         smooth = mesh.smooth(n_iter=5000)
@@ -71,14 +71,14 @@ for filename in os.listdir(source):
 
         conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
         # conn.plot()
-        # conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0] + 'conn.stl')
+        conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0] + '_conn.stl')
 
         bodies = conn.split_bodies() # seperate cells
         bodiesPolyData = bodies.as_polydata_blocks()
         for body in bodiesPolyData:
             if body.n_cells > 1: # filter degenerate bodies
 
-                body.plot()
+                # body.plot()
                 # vtk.vtkFillHolesFilter(body)
                 # body.plot()
 
@@ -88,5 +88,9 @@ for filename in os.listdir(source):
                 # print(enclosed_body)
                 # enclosed_body.plot()
                 # body.plot()
-                # body.save(target_folder + '/bodies' + os.path.splitext(filename)[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
+                if not os.path.exists(target_folder + '/bodies/' + os.path.splitext(filename)[0]):
+                    os.mkdir(target_folder + '/bodies/' + os.path.splitext(filename)[0])
+                body.save(target_folder + '/bodies/' + os.path.splitext(filename)[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
         # bodies.plot()
+    
+        break # uncomment to only run once

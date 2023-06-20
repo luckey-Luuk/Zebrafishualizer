@@ -1,19 +1,29 @@
+import os
 import numpy as np
 import tifffile
 import pyvista as pv
 import vtk
-import pymeshfix # won't work, when it "fixes" it gets rid of more than half of the points
-import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
-from trimesh import repair
+# import pymeshfix # won't work, when it "fixes" it gets rid of more than half of the points
+# import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
+# from trimesh import repair
 
 
-#Read tiff file
-# data = tifffile.imread('Data/20190701--2/20190701--20119.tif') #8 layers
-data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_green/20190701--20000.tif') #29 layers
-# data = tifffile.imread('Data/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a/20190701--20000_M3a_Step92.tif') #29 layers labeled
+#Read tiff files
+tifs = {}
 
-imarray = np.array(data) # convert tiff file to numpy array
-num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
+source = "Data/20190701--2_inter_29layers_mask_imagej"
+# for filename in os.listdir(source):
+#     f = os.path.join(source, filename)
+#     if f.endswith(".tif"):
+#         tifs[filename] = np.array(tifffile.imread(f))
+#         #TODO: check if all tifs have the same shape
+
+# use below to read only one file (comment out above for loop)
+filename = os.listdir(source)[0]
+f = os.path.join(source, filename)
+tifs[filename] = np.array(tifffile.imread(f))
+
+# num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
 
 
 #Create point cloud

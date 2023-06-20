@@ -13,6 +13,13 @@ const modelUrl_t2 = new URL('../assets/mesh_t2.stl', import.meta.url);
 const modelUrl_t3 = new URL('../assets/mesh_t3.stl', import.meta.url);
 const modelUrl_t4 = new URL('../assets/mesh_t4.stl', import.meta.url);
 const modelUrl_t5 = new URL('../assets/mesh_t5.stl', import.meta.url);
+const models = [];
+
+for (let i = 0; i < 6 ; i++) {
+    let model_URL = new URL('../assets/mesh_t'+ i +'.stl', import.meta.url);
+    models.push(model_URL);
+}
+
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
@@ -23,7 +30,7 @@ document.body.appendChild(renderer.domElement);
 let currentMesh;
 let stlPaths = [];
 stlPaths[0] = modelUrl_t0;
-stlPaths[1] = modelUrl;
+stlPaths[1] = modelUrl_t1;
 stlPaths[2] = modelUrl_t2;
 stlPaths[3] = modelUrl_t3;
 stlPaths[4] = modelUrl_t4;

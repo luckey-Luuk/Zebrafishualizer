@@ -13,18 +13,35 @@ const modelUrl_t2 = new URL('../assets/mesh_t2.stl', import.meta.url);
 const modelUrl_t3 = new URL('../assets/mesh_t3.stl', import.meta.url);
 const modelUrl_t4 = new URL('../assets/mesh_t4.stl', import.meta.url);
 const modelUrl_t5 = new URL('../assets/mesh_t5.stl', import.meta.url);
-const models = [];
-
-for (let i = 0; i < 6 ; i++) {
-    let model_URL = new URL('../assets/mesh_t'+ i +'.stl', import.meta.url);
-    models.push(model_URL);
-}
 
 
 // Add basic scene elements
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
+
+// let pathNames = []
+// for (let i = 0; i < 6 ; i++) {
+//     pathNames[i] = `../assets/mesh_t${i}.stl`
+
+// }
+
+// let models = [];
+// for (let j = 0; j < pathNames.length; j++){
+//     const model_Url_Attempt = new URL(pathNames[j], import.meta.url)
+//     models[j] = model_Url_Attempt;
+//     console.log(models[j]);
+// }
+
+let models = [];
+for (let i = 0; i < 6 ; i++) {
+    const model_Url = new URL(`../assets/mesh_t${i}.stl`, import.meta.url);
+    const test_Url = new URL('../assets/mesh_t5.stl', import.meta.url);
+    models[i] = model_Url;
+    console.log(models[i]);
+}
+
+
 
 // Add variables
 let currentMesh;
@@ -36,6 +53,9 @@ stlPaths[3] = modelUrl_t3;
 stlPaths[4] = modelUrl_t4;
 stlPaths[5] = modelUrl_t5;
 let currentStlIndex = 0;
+
+console.log(stlPaths[5])
+
 const clock = new THREE.Clock();
 
 const scene = new THREE.Scene();
@@ -107,15 +127,15 @@ function animate(time) {
     const delta = clock.getDelta(); // start the clock
 
     if (options.isPaused){
-        options.timeStepDelay = 1000
+        options.timeStepDelay = 10000
     }
     if (options.isPaused == false){
         clock.start
     }
 
     if (clock.elapsedTime >= options.timeStepDelay) {
-        currentStlIndex = (currentStlIndex + 1) % stlPaths.length; // Increment the index and loop back if necessary
-        loadSTL(stlPaths[currentStlIndex]);
+        currentStlIndex = (currentStlIndex + 1) % models.length; // Increment the index and loop back if necessary
+        loadSTL(models[currentStlIndex]);
         clock.start(); // Reset the clock
     }
 }

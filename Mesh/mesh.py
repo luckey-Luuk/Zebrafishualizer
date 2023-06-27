@@ -7,9 +7,9 @@ import vtk
 # import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
 # from trimesh import repair
 
-
 source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
 target_folder = "Data/meshes/20190701--2_meshes" # folder to save mesh files
+
 
 for filename in os.listdir(source):
     target_file = target_folder + '/' + os.path.splitext(filename)[0].split('_')[0] + "_mesh.stl"
@@ -24,31 +24,33 @@ for filename in os.listdir(source):
         num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
         num_cells = imarray.max() # get number of cells in tif
 
+
        # Create point cloud
-        point_clouds = [[]] * num_cells # initialize list of point clouds
+        point_clouds = [ [] for _ in range(num_cells) ]
         for z in range(num_layers):
             layer = imarray[z, :, :] # select layer
 
-            for c in range(1, num_cells):
-                matching_pixels = np.where(layer == c) # find pixels with current cell label
-                point_cloud = np.column_stack(matching_pixels) # add pixels to point cloud
-
-                point_cloud = point_cloud.astype(float)  # convert to float to handle non-integer coordinates
+            for c in range(0, num_cells):
+                matching_pixels = np.where(layer == c+1) # find pixels with current cell label
+                point_cloud = np.column_stack(matching_pixels).astype(float) # add pixels to point cloud and convert to float to handle non-integer coordinates
                 point_cloud[:, 0] -= height / 2
                 point_cloud[:, 1] -= width / 2
-                point_cloud = np.hstack((point_cloud, np.full((point_cloud.shape[0], 1), z)))  # Add z-coordinate
+                point_cloud = np.hstack((point_cloud, np.full((point_cloud.shape[0], 1), z)))  # Add z-coordinate)
                 
-                point_clouds[c-1].append(point_cloud)
-        
-        clouds = [None] * num_cells
-        for c in range(1, num_cells):
-            clouds[c-1] = pv.PolyData(np.concatenate(point_clouds[c-1])) # combine layers into one and convert to polydata
+                point_clouds[c].append(point_cloud)
 
+        clouds = [None] * num_cells
+        for c in range(0, num_cells):
+            clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
+        
+        
        # Create mesh
-        mesh = clouds[0].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
-        # mesh = pv.wrap(combined_point_cloud).reconstruct_surface() # use (poisson?) surface reconstruction to create mesh (not working)
-        mesh.plot()
-        # mesh.save(target_file)
+        for c in range(0, num_cells):
+            # mesh = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
+            mesh = clouds[c].reconstruct_surface() # use (poisson?) surface reconstruction to create mesh
+            # mesh = mesh.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
+            mesh.plot()
+            # mesh.save(target_file)
 
 
     #     # Perform mesh smoothing

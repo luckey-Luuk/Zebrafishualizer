@@ -2,5 +2,19 @@
   "dependencies": {
     "dat.gui": "^0.7.9",
     "three": "^0.152.2"
+  },
+  "name": "zebrafishualizer",
+  "description": "3D visualizer of moving immune cells in zebrafish. (bachelor end project)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build-prod": "parcel build src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }

@@ -2,6 +2,7 @@ import os
 import numpy as np
 import tifffile
 import pyvista as pv
+import pymeshfix as mf
 import vtk
 # import pymeshfix # won't work, when it "fixes" it gets rid of more than half of the points
 # import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
@@ -43,12 +44,18 @@ for filename in os.listdir(source):
         for c in range(0, num_cells):
             clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
         
-        
+
        # Create mesh
         for c in range(0, num_cells):
             # mesh = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
-            mesh = clouds[c].reconstruct_surface() # use (poisson?) surface reconstruction to create mesh
+            mesh = clouds[c].reconstruct_surface()#sample_spacing=1) # use (poisson?) surface reconstruction to create mesh
             # mesh = mesh.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
+
+            #fix mesh
+            mesh = mf.MeshFix(mesh)
+            mesh.repair()
+            mesh = mesh.mesh
+
             mesh.plot()
             # mesh.save(target_file)
 

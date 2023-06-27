@@ -14,8 +14,9 @@ pooch
 scooby
 packaging
 
-# imagej #?
-pyimagej >= 1.0.0 #?
+pymeshfix
+
+pyimagej >= 1.0.0
 #dependencies:
 imglyb >= 2.0.1
 jgo >= 1.0.3

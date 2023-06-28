@@ -43,12 +43,12 @@ for filename in os.listdir(source):
         clouds = [None] * num_cells
         for c in range(0, num_cells):
             clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
-        
+
 
        # Create mesh
         for c in range(0, num_cells):
             # mesh = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
-            mesh = clouds[c].reconstruct_surface()#sample_spacing=1) # use (poisson?) surface reconstruction to create mesh
+            mesh = clouds[c].reconstruct_surface(sample_spacing=1) # use (poisson?) surface reconstruction to create mesh
             # mesh = mesh.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
 
             #fix mesh
@@ -56,26 +56,26 @@ for filename in os.listdir(source):
             mesh.repair()
             mesh = mesh.mesh
 
-            mesh.plot()
+            # mesh.plot()
             # mesh.save(target_file)
 
 
-    #     # Perform mesh smoothing
-    #     smoother = vtk.vtkSmoothPolyDataFilter()
-    #     smoother.SetInputData(mesh)
-    #     smoother.SetNumberOfIterations(500)
-    #     smoother.Update()
-    #     smoothed_mesh = smoother.GetOutput() # get the smoothed mesh
-    #     smoothed_mesh_pv = pv.wrap(smoothed_mesh) # convert the VTK data to a PyVista mesh
+           # Perform mesh smoothing
+            smoother = vtk.vtkSmoothPolyDataFilter()
+            smoother.SetInputData(mesh)
+            smoother.SetNumberOfIterations(500)
+            smoother.Update()
+            smoothed_mesh = smoother.GetOutput() # get the smoothed mesh
+            smoothed_mesh_pv = pv.wrap(smoothed_mesh) # convert the VTK data to a PyVista mesh
 
-    #     # plotter = pv.Plotter() # create PyVista plotter
-    #     # plotter.add_mesh(smoothed_mesh_pv) # add smoothed mesh to plotter
-    #     # plotter.show()
+            plotter = pv.Plotter() # create PyVista plotter
+            plotter.add_mesh(smoothed_mesh_pv) # add smoothed mesh to plotter
+            plotter.show()
 
-    #     smooth = mesh.smooth(n_iter=5000)
-    #     # smooth.plot()
-    #     smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
-    #     # smooth_taubin.plot()
+            # smooth = mesh.smooth(n_iter=5000)
+            # smooth.plot()
+            # smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
+            # smooth_taubin.plot()
 
 
     #     conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh

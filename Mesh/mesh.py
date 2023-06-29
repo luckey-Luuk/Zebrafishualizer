@@ -55,7 +55,10 @@ for filename in os.listdir(source):
             clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
 
 
-       # Create mesh of each cell
+       # Create mesh
+        frame = pv.PolyData() # initialize mesh with all cells
+
+       # create mesh of each cell
         for c in range(0, num_cells):
             # cell = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
             cell = clouds[c].reconstruct_surface(sample_spacing=1) # use surface reconstruction to create mesh
@@ -74,8 +77,8 @@ for filename in os.listdir(source):
             smoothed_cell = smoother.GetOutput() # get the smoothed mesh
             smoothed_cell_pv = pv.wrap(smoothed_cell) # convert the VTK data to a PyVista mesh
 
-            plotter = pv.Plotter() # create PyVista plotter
-            plotter.add_mesh(smoothed_cell_pv) # add smoothed mesh to plotter
+            # plotter = pv.Plotter() # create PyVista plotter
+            # plotter.add_mesh(smoothed_cell_pv) # add smoothed mesh to plotter
             # plotter.show()
 
             # smooth = repaired.smooth(n_iter=5000)
@@ -84,7 +87,12 @@ for filename in os.listdir(source):
             # smooth_taubin.plot()
 
            # Save cell mesh
-            save_mesh(smoothed_cell_pv, target_folder + '/' + shortened_filename, shortened_filename + '_cell' + str(c+1))
+            save_mesh(smoothed_cell_pv, target_folder + '/' + shortened_filename, shortened_filename + '-' + str(c+1))
+
+            frame = frame.merge(smoothed_cell_pv) # add cell mesh to frame mesh
+        
+        # frame.plot()
+        save_mesh(frame, target_folder, shortened_filename)
 
 
     #     conn = smoothed_cell_pv.connectivity(largest=False) # get connectivity of mesh

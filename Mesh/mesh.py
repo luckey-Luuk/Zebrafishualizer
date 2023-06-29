@@ -8,12 +8,22 @@ import vtk
 # import trimesh # won't work, runtime error when it "fixes" when it does show something it does not appear altered
 # from trimesh import repair
 
+def save_mesh(mesh, foldername, filename, overwrite=False):
+    if not os.path.exists(foldername): # create folder if it doesn't exist
+        os.mkdir(foldername)
+    elif os.path.exists(foldername + '/' + filename + '.stl'): # check if file needs to be overwritten
+        if overwrite:
+            os.remove(foldername + '/' + filename + '.stl')
+        else:
+            return
+    mesh.save(foldername + '/' + filename + '.stl') # save mesh
+
 source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
 target_folder = "Data/meshes/20190701--2_meshes" # folder to save mesh files
 
 
 for filename in os.listdir(source):
-    target_file = target_folder + '/' + os.path.splitext(filename)[0].split('_')[0] + "_mesh.stl"
+    shortened_filename = os.path.splitext(filename)[0].split('_')[0]
 
    # Read tif file
     f = os.path.join(source, filename) # get file path
@@ -45,40 +55,39 @@ for filename in os.listdir(source):
             clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
 
 
-       # Create mesh
+       # Create mesh of each cell
         for c in range(0, num_cells):
-            # mesh = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
-            mesh = clouds[c].reconstruct_surface(sample_spacing=1) # use (poisson?) surface reconstruction to create mesh
-            # mesh = mesh.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
+            # cell = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh, alpha variable dictates how close the points have to be to get connected
+            cell = clouds[c].reconstruct_surface(sample_spacing=1) # use surface reconstruction to create mesh
+            # cell = cell.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
 
-            #fix mesh
-            mesh = mf.MeshFix(mesh)
-            mesh.repair()
-            mesh = mesh.mesh
-
-            # mesh.plot()
-            # mesh.save(target_file)
-
+           # Fix mesh
+            meshfix = mf.MeshFix(cell)
+            meshfix.repair()
+            repaired = meshfix.mesh
 
            # Perform mesh smoothing
             smoother = vtk.vtkSmoothPolyDataFilter()
-            smoother.SetInputData(mesh)
+            smoother.SetInputData(repaired)
             smoother.SetNumberOfIterations(500)
             smoother.Update()
-            smoothed_mesh = smoother.GetOutput() # get the smoothed mesh
-            smoothed_mesh_pv = pv.wrap(smoothed_mesh) # convert the VTK data to a PyVista mesh
+            smoothed_cell = smoother.GetOutput() # get the smoothed mesh
+            smoothed_cell_pv = pv.wrap(smoothed_cell) # convert the VTK data to a PyVista mesh
 
             plotter = pv.Plotter() # create PyVista plotter
-            plotter.add_mesh(smoothed_mesh_pv) # add smoothed mesh to plotter
-            plotter.show()
+            plotter.add_mesh(smoothed_cell_pv) # add smoothed mesh to plotter
+            # plotter.show()
 
-            # smooth = mesh.smooth(n_iter=5000)
+            # smooth = repaired.smooth(n_iter=5000)
             # smooth.plot()
-            # smooth_taubin = mesh.smooth_taubin(n_iter=5000, pass_band=0.5)
+            # smooth_taubin = repaired.smooth_taubin(n_iter=5000, pass_band=0.5)
             # smooth_taubin.plot()
 
+           # Save cell mesh
+            save_mesh(smoothed_cell_pv, target_folder + '/' + shortened_filename, shortened_filename + '_cell' + str(c+1))
 
-    #     conn = smoothed_mesh_pv.connectivity(largest=False) # get connectivity of mesh
+
+    #     conn = smoothed_cell_pv.connectivity(largest=False) # get connectivity of mesh
     #     # conn.plot()
     #     # conn.save(target_folder + '/connectivities/' + os.path.splitext(filename)[0].split('_')[0] + '_conn.stl')
 

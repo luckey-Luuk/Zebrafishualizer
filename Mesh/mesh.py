@@ -119,4 +119,4 @@ for filename in os.listdir(source):
     #     #         body.save(target_folder + '/bodies/' + os.path.splitext(filename)[0].split('_')[0] + '/body'+str(bodiesPolyData.index(body))+'.stl')
     #     # bodies.plot()
     
-        break # uncomment to create only 1 mesh
+        break # uncomment to create only meshes of first tif file

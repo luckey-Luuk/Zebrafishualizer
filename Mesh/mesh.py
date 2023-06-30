@@ -1,3 +1,4 @@
+# import sys #TODO: run from command line
 import os # file handling
 import numpy as np # arrays
 import tifffile # reading tif files
@@ -17,19 +18,14 @@ def save_mesh(mesh, foldername, filename, overwrite=False):
     mesh.save(foldername + '/' + filename + '.stl') # save mesh
 
 
-#Define folders
-source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
-target_folder = "Data/meshes/20190701--2" # folder to save mesh files
+def create_mesh(save_name, save_folder, plot_cell=False, plot=False, overwrite=False):
+    shortened_filename = os.path.splitext(save_name)[0].split('_')[0]
 
-
-for filename in os.listdir(source):
-    shortened_filename = os.path.splitext(filename)[0].split('_')[0]
-
-   #Read tif file
-    f = os.path.join(source, filename) # get file path
+    #Read tif file
+    f = os.path.join(source, save_name) # get file path
     if not f.endswith(".tif"): # check if file is a tif file
         print("Not a tif file: " + f)
-        continue
+        return
         #TODO: check if tifs have the same dimensions
     else:
         imarray = np.array(tifffile.imread(f)) # read tif file
@@ -37,8 +33,7 @@ for filename in os.listdir(source):
         min_cell = sorted(set(imarray.flatten()))[1] # get lowest cell label (exclude empty space)
         max_cell = imarray.max() # get highest cell label
 
-
-       #Create point clouds
+        #Create point clouds
         point_clouds = [ [] for _ in range(max_cell+1) ]
         for z in range(num_layers):
             layer = imarray[z, :, :] # select layer
@@ -57,32 +52,55 @@ for filename in os.listdir(source):
             if point_clouds[c]:
                 clouds[c] = pv.PolyData(np.concatenate(point_clouds[c])) # combine layers into one and convert to polydata
 
-
-       #Create mesh
+        #Create mesh
         frame = pv.PolyData() # initialize mesh with all cells
 
-       #create mesh of each cell
+        #create mesh of each cell
         for c in range(min_cell, max_cell+1):
             if clouds[c]:
                 # cell = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh
                 cell = clouds[c].reconstruct_surface(sample_spacing=1) # use surface reconstruction to create mesh
                 # cell = cell.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
 
-               #Fix mesh TODO: check if this is necessary
-                # meshfix = mf.MeshFix(cell)
-                # meshfix.repair()
-                # cell = meshfix.mesh
+                #Fix mesh TODO: check if this is necessary
+                meshfix = mf.MeshFix(cell)
+                meshfix.repair()
+                cell = meshfix.mesh
 
                 smoothed_cell = cell.smooth_taubin(n_iter=50, pass_band=0.1) # smooth mesh
 
-               #Save and plot cell mesh
-                # smoothed_cell.plot()
-                save_mesh(smoothed_cell, target_folder + '/' + shortened_filename, shortened_filename + '-' + str(c))
+                #Save and plot cell mesh
+                if plot_cell:
+                    smoothed_cell.plot(text=shortened_filename + '-' + str(c))
+                save_mesh(smoothed_cell, save_folder + '/' + shortened_filename, shortened_filename + '-' + str(c), overwrite)
 
                 frame = frame.merge(smoothed_cell) # add cell mesh to frame mesh
-        
-       #Save and plot frame mesh
-        frame.plot()
-        save_mesh(frame, target_folder, shortened_filename)
 
-        break #uncomment to create only meshes of first tif file
+        #Save and plot frame mesh
+        if plot:
+            frame.plot(text=shortened_filename)
+        save_mesh(frame, save_folder, shortened_filename, overwrite)
+
+
+def create_meshes(source, save_folder, plot_cell=False, plot=False, overwrite=False, n_meshes=np.inf):
+    for filename in os.listdir(source):
+        create_mesh(filename, save_folder, plot_cell, plot, overwrite)
+
+        n_meshes -= 1
+        if n_meshes <= 0:
+            break
+
+
+if __name__ == "__main__":
+    # source = sys.argv[1]
+    # save_folder = sys.argv[2]
+    source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
+    save_folder = "Data/meshes/20190701--2" # folder to save mesh files
+    plot_cell = False # plot each individual cell
+    plot = False # plot whole frames
+    overwrite = False # overwrite existing files
+    n_meshes = np.inf # maximum number of meshes to create
+
+    create_meshes(source, save_folder, plot_cell, plot, overwrite, n_meshes)
+
+    # python3 mesh.py Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej Data/meshes/20190701--2

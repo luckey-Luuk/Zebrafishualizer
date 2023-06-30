@@ -14,7 +14,7 @@ def plot_mesh(mesh, clouds, plot_cloud=False, text="description not provided"):
     if plot_cloud:
         for points in clouds:
             if points:
-                pl.add_points(points.points, color='red', style='points')#_gaussian', emissive=True, point_size=5)
+                pl.add_points(points.points, color='red', point_size=3, style='points')#_gaussian', emissive=True, point_size=5)
     pl.show()
 
 

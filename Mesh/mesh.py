@@ -29,7 +29,7 @@ def save_mesh(mesh, foldername, filename, overwrite=False):
     mesh.save(foldername + '/' + filename + '.stl') # save mesh
 
 
-def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plot_clouds=False, overwrite=False):
+def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False):
     shortened_filename = os.path.splitext(save_name)[0].split('_')[0]
 
     #Read tif file
@@ -82,7 +82,7 @@ def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plo
 
                 #Save and plot cell mesh
                 if plot_cells:
-                    plot_mesh(smoothed_cell, [clouds[c]], plot_clouds, shortened_filename + '-' + str(c))
+                    plot_mesh(smoothed_cell, [clouds[c]], plot_points, shortened_filename + '-' + str(c))
 
                 save_mesh(smoothed_cell, save_folder + '/' + shortened_filename, shortened_filename + '-' + str(c), overwrite)
 
@@ -90,14 +90,14 @@ def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plo
 
         #Save and plot frame mesh
         if plot_frames:
-            plot_mesh(frame, clouds, plot_clouds, shortened_filename)
+            plot_mesh(frame, clouds, plot_points, shortened_filename)
 
         save_mesh(frame, save_folder, shortened_filename, overwrite)
 
 
-def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_clouds=False, overwrite=False, n_meshes=np.inf):
+def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_meshes=np.inf):
     for filename in os.listdir(source):
-        create_mesh(filename, save_folder, plot_cells, plot_frames, plot_clouds, overwrite)
+        create_mesh(filename, save_folder, plot_cells, plot_frames, plot_points, overwrite)
 
         n_meshes -= 1
         if n_meshes <= 0:
@@ -111,10 +111,10 @@ if __name__ == "__main__":
     save_folder = "Data/meshes/20190701--2" # folder to save mesh files
     plot_cells  = False # plot each individual cell
     plot_frames = False # plot whole frames
-    plot_clouds = False # plot point clouds
+    plot_points = False # plot point clouds
     overwrite   = False # overwrite existing files
     n_meshes    = np.inf # maximum number of meshes to create
 
-    create_meshes(source, save_folder, plot_cells, plot_frames, plot_clouds, overwrite, n_meshes)
+    create_meshes(source, save_folder, plot_cells, plot_frames, plot_points, overwrite, n_meshes)
 
     # python3 mesh.py Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej Data/meshes/20190701--2

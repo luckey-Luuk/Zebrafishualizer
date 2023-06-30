@@ -14,7 +14,7 @@ def plot_mesh(mesh, clouds, plot_cloud=False, text="description not provided"):
     if plot_cloud:
         for points in clouds:
             if points:
-                pl.add_points(points.points, color='red', point_size=5, style='points_gaussian', emissive=False)
+                pl.add_points(points.points, color='red', point_size=5, style='points_gaussian', emissive=True)
     pl.show()
 
 
@@ -110,8 +110,8 @@ if __name__ == "__main__":
     source      = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
     save_folder = "Data/meshes/20190701--2" # folder to save mesh files
     plot_cells  = False # plot each individual cell
-    plot_frames = False # plot whole frames
-    plot_points = False # plot point clouds
+    plot_frames = True # plot whole frames
+    plot_points = True # plot point clouds
     overwrite   = False # overwrite existing files
     n_meshes    = np.inf # maximum number of meshes to create
 

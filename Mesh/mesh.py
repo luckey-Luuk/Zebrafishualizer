@@ -7,6 +7,17 @@ import pymeshfix as mf # improving meshes
 # from trimesh import repair #TODO: check if this library is useful
 
 
+def plot_mesh(mesh, clouds, plot_cloud=False, text="description not provided"):
+    pl = pv.Plotter()
+    pl.add_text(text)
+    pl.add_mesh(mesh)
+    if plot_cloud:
+        for points in clouds:
+            if points:
+                pl.add_points(points.points, color='red', point_size=5, style='points_gaussian', emissive=False)
+    pl.show()
+
+
 def save_mesh(mesh, foldername, filename, overwrite=False):
     if not os.path.exists(foldername): # create folder if it doesn't exist
         os.makedirs(foldername)
@@ -18,7 +29,7 @@ def save_mesh(mesh, foldername, filename, overwrite=False):
     mesh.save(foldername + '/' + filename + '.stl') # save mesh
 
 
-def create_mesh(save_name, save_folder, plot_cell=False, plot=False, overwrite=False):
+def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plot_clouds=False, overwrite=False):
     shortened_filename = os.path.splitext(save_name)[0].split('_')[0]
 
     #Read tif file
@@ -70,21 +81,23 @@ def create_mesh(save_name, save_folder, plot_cell=False, plot=False, overwrite=F
                 smoothed_cell = cell.smooth_taubin(n_iter=50, pass_band=0.1) # smooth mesh
 
                 #Save and plot cell mesh
-                if plot_cell:
-                    smoothed_cell.plot(text=shortened_filename + '-' + str(c))
+                if plot_cells:
+                    plot_mesh(smoothed_cell, [clouds[c]], plot_clouds, shortened_filename + '-' + str(c))
+
                 save_mesh(smoothed_cell, save_folder + '/' + shortened_filename, shortened_filename + '-' + str(c), overwrite)
 
                 frame = frame.merge(smoothed_cell) # add cell mesh to frame mesh
 
         #Save and plot frame mesh
-        if plot:
-            frame.plot(text=shortened_filename)
+        if plot_frames:
+            plot_mesh(frame, clouds, plot_clouds, shortened_filename)
+
         save_mesh(frame, save_folder, shortened_filename, overwrite)
 
 
-def create_meshes(source, save_folder, plot_cell=False, plot=False, overwrite=False, n_meshes=np.inf):
+def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_clouds=False, overwrite=False, n_meshes=np.inf):
     for filename in os.listdir(source):
-        create_mesh(filename, save_folder, plot_cell, plot, overwrite)
+        create_mesh(filename, save_folder, plot_cells, plot_frames, plot_clouds, overwrite)
 
         n_meshes -= 1
         if n_meshes <= 0:
@@ -94,13 +107,14 @@ def create_meshes(source, save_folder, plot_cell=False, plot=False, overwrite=Fa
 if __name__ == "__main__":
     # source = sys.argv[1]
     # save_folder = sys.argv[2]
-    source = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
+    source      = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
     save_folder = "Data/meshes/20190701--2" # folder to save mesh files
-    plot_cell = False # plot each individual cell
-    plot = False # plot whole frames
-    overwrite = False # overwrite existing files
-    n_meshes = np.inf # maximum number of meshes to create
+    plot_cells  = False # plot each individual cell
+    plot_frames = False # plot whole frames
+    plot_clouds = False # plot point clouds
+    overwrite   = False # overwrite existing files
+    n_meshes    = np.inf # maximum number of meshes to create
 
-    create_meshes(source, save_folder, plot_cell, plot, overwrite, n_meshes)
+    create_meshes(source, save_folder, plot_cells, plot_frames, plot_clouds, overwrite, n_meshes)
 
     # python3 mesh.py Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej Data/meshes/20190701--2

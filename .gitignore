@@ -335,6 +335,7 @@ Thumbs.db
 
 # Godot
 .godot/
+dist/
 
 # output
 *.tif

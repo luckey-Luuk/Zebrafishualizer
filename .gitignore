@@ -332,10 +332,10 @@ Thumbs.db
 
 # Parcel
 .parcel-cache/
+dist/
 
 # Godot
 .godot/
-dist/
 
 # output
 *.tif

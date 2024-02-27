@@ -333,6 +333,9 @@ Thumbs.db
 # Parcel
 .parcel-cache/
 
+# Godot
+.godot/
+
 # output
 *.tif
 *.stl

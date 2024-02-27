@@ -333,6 +333,7 @@ Thumbs.db
 # Parcel
 .parcel-cache/
 dist/
+node_modules/
 
 # Godot
 .godot/

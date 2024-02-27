@@ -107,8 +107,8 @@ def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot
 if __name__ == "__main__":
     # source = sys.argv[1]
     # save_folder = sys.argv[2]
-    source      = "Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
-    save_folder = "Data/meshes/20190701--2" # folder to save mesh files
+    source      = "../Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
+    save_folder = "../Data/meshes/20190701--2" # folder to save mesh files
     plot_cells  = False # plot each individual cell
     plot_frames = True # plot whole frames
     plot_points = True # plot point clouds

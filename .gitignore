@@ -336,3 +336,7 @@ dist/
 
 # Godot
 .godot/
+
+# output
+*.tif
+*.stl

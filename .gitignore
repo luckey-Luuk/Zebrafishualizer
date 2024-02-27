@@ -332,3 +332,7 @@ Thumbs.db
 
 # Parcel
 .parcel-cache/
+dist/
+
+# Godot
+.godot/

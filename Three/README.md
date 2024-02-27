@@ -1,0 +1,2 @@
+To run Three.js visualization run the command "parcel ./src/index.html" and navigate to http://localhost:1234.
+If needed, install parcel with "npm install parcel --save-dev" for local or "npm install parcel -g" for global.

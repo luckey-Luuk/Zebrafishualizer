@@ -1,0 +1,1153 @@
+[gd_scene load_steps=250 format=3 uid="uid://da5mg4h6ps6n4"]
+
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_2lh86"]
+[ext_resource type="Script" path="res://Scripts/Camera3D.gd" id="1_3hw58"]
+[ext_resource type="ArrayMesh" uid="uid://dhjqkj1751pcy" path="res://Objects/20190701--20000.obj" id="2_b2ucu"]
+[ext_resource type="ArrayMesh" uid="uid://bdn4wjaqt8qyb" path="res://Objects/20190701--20001.obj" id="3_kfy71"]
+[ext_resource type="ArrayMesh" uid="uid://ba6how3c20msk" path="res://Objects/20190701--20002.obj" id="4_intpq"]
+[ext_resource type="ArrayMesh" uid="uid://c7uwkrmf1kkjr" path="res://Objects/20190701--20003.obj" id="5_x630w"]
+[ext_resource type="ArrayMesh" uid="uid://ja8axt0nvf0" path="res://Objects/20190701--20004.obj" id="6_8k2tj"]
+[ext_resource type="ArrayMesh" uid="uid://bt4ual6souk8x" path="res://Objects/20190701--20005.obj" id="7_wlicp"]
+[ext_resource type="ArrayMesh" uid="uid://b4v4lkf2gwdnb" path="res://Objects/20190701--20006.obj" id="8_ugx2m"]
+[ext_resource type="ArrayMesh" uid="uid://dd1c8us11q3qi" path="res://Objects/20190701--20007.obj" id="9_5dxge"]
+[ext_resource type="ArrayMesh" uid="uid://3m8vrannfnhi" path="res://Objects/20190701--20008.obj" id="10_j6yj1"]
+[ext_resource type="ArrayMesh" uid="uid://cwdihhavq6t2h" path="res://Objects/20190701--20009.obj" id="11_tp4i6"]
+[ext_resource type="ArrayMesh" uid="uid://bbkxdp7vap61s" path="res://Objects/20190701--20010.obj" id="12_mxkdu"]
+[ext_resource type="ArrayMesh" uid="uid://1qm33da507vc" path="res://Objects/20190701--20011.obj" id="13_tleel"]
+[ext_resource type="ArrayMesh" uid="uid://bjgpi82dv1m53" path="res://Objects/20190701--20012.obj" id="14_nh2yf"]
+[ext_resource type="ArrayMesh" uid="uid://cn8ofvn36xlya" path="res://Objects/20190701--20013.obj" id="15_u3mra"]
+[ext_resource type="ArrayMesh" uid="uid://c1x6xowtl2281" path="res://Objects/20190701--20014.obj" id="16_a6l5n"]
+[ext_resource type="ArrayMesh" uid="uid://nb0mrbjvulec" path="res://Objects/20190701--20015.obj" id="17_r60gn"]
+[ext_resource type="ArrayMesh" uid="uid://h6jme04bc8vb" path="res://Objects/20190701--20016.obj" id="18_5vi2v"]
+[ext_resource type="ArrayMesh" uid="uid://di3ibroipaoqe" path="res://Objects/20190701--20017.obj" id="19_yp20c"]
+[ext_resource type="ArrayMesh" uid="uid://cdr376a47u6kg" path="res://Objects/20190701--20018.obj" id="20_k0pvt"]
+[ext_resource type="ArrayMesh" uid="uid://bkv2cse276pyb" path="res://Objects/20190701--20019.obj" id="21_tnwq4"]
+[ext_resource type="ArrayMesh" uid="uid://bu5x8nhwwrv38" path="res://Objects/20190701--20020.obj" id="22_ikxff"]
+[ext_resource type="ArrayMesh" uid="uid://d1xvcupv61jq3" path="res://Objects/20190701--20021.obj" id="23_8gb10"]
+[ext_resource type="ArrayMesh" uid="uid://c66kooj08llgw" path="res://Objects/20190701--20022.obj" id="24_5i1vj"]
+[ext_resource type="ArrayMesh" uid="uid://cwixprsa3hnqk" path="res://Objects/20190701--20023.obj" id="25_1a03p"]
+[ext_resource type="ArrayMesh" uid="uid://bfqjj1ibu303k" path="res://Objects/20190701--20024.obj" id="26_i5lww"]
+[ext_resource type="ArrayMesh" uid="uid://bk582rsfc1l0o" path="res://Objects/20190701--20025.obj" id="27_ivyhy"]
+[ext_resource type="ArrayMesh" uid="uid://b6upil55jmogu" path="res://Objects/20190701--20026.obj" id="28_7lvuc"]
+[ext_resource type="ArrayMesh" uid="uid://bvnl7ncks6qax" path="res://Objects/20190701--20027.obj" id="29_34r07"]
+[ext_resource type="ArrayMesh" uid="uid://bihsskwdxy1wt" path="res://Objects/20190701--20028.obj" id="30_u72y4"]
+[ext_resource type="ArrayMesh" uid="uid://dpwwsge4xwt80" path="res://Objects/20190701--20029.obj" id="31_esj8k"]
+[ext_resource type="ArrayMesh" uid="uid://bdk7ida2xl2tt" path="res://Objects/20190701--20030.obj" id="32_xvjp4"]
+[ext_resource type="ArrayMesh" uid="uid://dnhbbdawd1bgn" path="res://Objects/20190701--20031.obj" id="33_7o6ss"]
+[ext_resource type="ArrayMesh" uid="uid://ditkds3rinemb" path="res://Objects/20190701--20032.obj" id="34_s6k38"]
+[ext_resource type="ArrayMesh" uid="uid://5jnyraa57ig2" path="res://Objects/20190701--20033.obj" id="35_2gel5"]
+[ext_resource type="ArrayMesh" uid="uid://dgc4uodp0dgcy" path="res://Objects/20190701--20034.obj" id="36_xb072"]
+[ext_resource type="ArrayMesh" uid="uid://ecfljimeow3a" path="res://Objects/20190701--20035.obj" id="37_nffsu"]
+[ext_resource type="ArrayMesh" uid="uid://bartc208iwyar" path="res://Objects/20190701--20036.obj" id="38_01hrq"]
+[ext_resource type="ArrayMesh" uid="uid://dashoaukqlwyb" path="res://Objects/20190701--20037.obj" id="39_n2x6o"]
+[ext_resource type="ArrayMesh" uid="uid://3fm5dbbtp3c7" path="res://Objects/20190701--20038.obj" id="40_ax70f"]
+[ext_resource type="ArrayMesh" uid="uid://bo7tf3hn7foqg" path="res://Objects/20190701--20039.obj" id="41_rgdoc"]
+[ext_resource type="ArrayMesh" uid="uid://b313hsevajlmt" path="res://Objects/20190701--20040.obj" id="42_ppcbg"]
+[ext_resource type="ArrayMesh" uid="uid://16ku7nm8oixt" path="res://Objects/20190701--20041.obj" id="43_xi2tg"]
+[ext_resource type="ArrayMesh" uid="uid://br72ee5tdtpxp" path="res://Objects/20190701--20042.obj" id="44_mndb2"]
+[ext_resource type="ArrayMesh" uid="uid://dp6vv06oloydv" path="res://Objects/20190701--20043.obj" id="45_q1a4b"]
+[ext_resource type="ArrayMesh" uid="uid://bjir5jgsgnwoq" path="res://Objects/20190701--20044.obj" id="46_xkfby"]
+[ext_resource type="ArrayMesh" uid="uid://b2057enacvvbw" path="res://Objects/20190701--20045.obj" id="47_tpm2t"]
+[ext_resource type="ArrayMesh" uid="uid://cu4uii7hprijp" path="res://Objects/20190701--20046.obj" id="48_wmkli"]
+[ext_resource type="ArrayMesh" uid="uid://duf3kneseo82y" path="res://Objects/20190701--20047.obj" id="49_sheol"]
+[ext_resource type="ArrayMesh" uid="uid://btj2o1520norg" path="res://Objects/20190701--20048.obj" id="50_a7hpl"]
+[ext_resource type="ArrayMesh" uid="uid://uy4n5gja18su" path="res://Objects/20190701--20049.obj" id="51_eakk2"]
+[ext_resource type="ArrayMesh" uid="uid://dd1sgrt8kgbch" path="res://Objects/20190701--20050.obj" id="52_maigv"]
+[ext_resource type="ArrayMesh" uid="uid://c16btmjugivli" path="res://Objects/20190701--20051.obj" id="53_by3wt"]
+[ext_resource type="ArrayMesh" uid="uid://lkotrdd1l1n0" path="res://Objects/20190701--20052.obj" id="54_2ja2f"]
+[ext_resource type="ArrayMesh" uid="uid://bab3ue4gmh0hx" path="res://Objects/20190701--20053.obj" id="55_dvkth"]
+[ext_resource type="ArrayMesh" uid="uid://psah0sddkld4" path="res://Objects/20190701--20054.obj" id="56_jcdb0"]
+[ext_resource type="ArrayMesh" uid="uid://ctekmuq14yrai" path="res://Objects/20190701--20055.obj" id="57_7s7u2"]
+[ext_resource type="ArrayMesh" uid="uid://bkfw8cw48gjax" path="res://Objects/20190701--20056.obj" id="58_86fxr"]
+[ext_resource type="ArrayMesh" uid="uid://de6ocgs4fxqpi" path="res://Objects/20190701--20057.obj" id="59_gynm7"]
+[ext_resource type="ArrayMesh" uid="uid://c8m3e6i8j8xtf" path="res://Objects/20190701--20058.obj" id="60_pkkxf"]
+[ext_resource type="ArrayMesh" uid="uid://us3i2qnr81tj" path="res://Objects/20190701--20059.obj" id="61_m3xm1"]
+[ext_resource type="ArrayMesh" uid="uid://c5ims1gc0rd18" path="res://Objects/20190701--20060.obj" id="62_x6bhj"]
+[ext_resource type="ArrayMesh" uid="uid://6f1yjqgwxprm" path="res://Objects/20190701--20061.obj" id="64_xivoq"]
+[ext_resource type="ArrayMesh" uid="uid://chfykeumwn6cv" path="res://Objects/20190701--20062.obj" id="65_a2uk0"]
+[ext_resource type="ArrayMesh" uid="uid://d2wexfcykeuub" path="res://Objects/20190701--20063.obj" id="66_4dg4b"]
+[ext_resource type="ArrayMesh" uid="uid://b6cul3hcfn5ev" path="res://Objects/20190701--20064.obj" id="67_are2j"]
+[ext_resource type="ArrayMesh" uid="uid://b58gm7602vxp" path="res://Objects/20190701--20065.obj" id="68_gfugt"]
+[ext_resource type="ArrayMesh" uid="uid://buhl71lpau4hg" path="res://Objects/20190701--20066.obj" id="69_34dop"]
+[ext_resource type="ArrayMesh" uid="uid://wktqg32vfb5i" path="res://Objects/20190701--20067.obj" id="70_a00me"]
+[ext_resource type="ArrayMesh" uid="uid://b37u2trg2fsji" path="res://Objects/20190701--20068.obj" id="71_rc5te"]
+[ext_resource type="ArrayMesh" uid="uid://cf551ar0dtnkv" path="res://Objects/20190701--20069.obj" id="72_jca6e"]
+[ext_resource type="ArrayMesh" uid="uid://csgyji32wb31m" path="res://Objects/20190701--20070.obj" id="73_slivb"]
+[ext_resource type="ArrayMesh" uid="uid://drg3rp2xwgabf" path="res://Objects/20190701--20071.obj" id="74_243sc"]
+[ext_resource type="ArrayMesh" uid="uid://c6v5wn5y8w4cp" path="res://Objects/20190701--20072.obj" id="75_hd858"]
+[ext_resource type="ArrayMesh" uid="uid://d1mt0lklorvmj" path="res://Objects/20190701--20073.obj" id="76_c0e7p"]
+[ext_resource type="ArrayMesh" uid="uid://dq225q48ucroc" path="res://Objects/20190701--20074.obj" id="77_g8i71"]
+[ext_resource type="ArrayMesh" uid="uid://c76ghvoecredp" path="res://Objects/20190701--20075.obj" id="78_tsnxq"]
+[ext_resource type="ArrayMesh" uid="uid://cke853gkfdrqb" path="res://Objects/20190701--20076.obj" id="79_pk6ue"]
+[ext_resource type="ArrayMesh" uid="uid://dmgtly3ic3h45" path="res://Objects/20190701--20077.obj" id="80_nhcbi"]
+[ext_resource type="ArrayMesh" uid="uid://cspj30gj2qq7y" path="res://Objects/20190701--20078.obj" id="81_1joxb"]
+[ext_resource type="ArrayMesh" uid="uid://djtbbh4apwcla" path="res://Objects/20190701--20079.obj" id="82_7pgg6"]
+[ext_resource type="ArrayMesh" uid="uid://r35eci2v3qjd" path="res://Objects/20190701--20080.obj" id="83_aom0j"]
+[ext_resource type="ArrayMesh" uid="uid://cpfd04khx86eb" path="res://Objects/20190701--20081.obj" id="84_e6pm3"]
+[ext_resource type="ArrayMesh" uid="uid://bdvqmtl6l0ymv" path="res://Objects/20190701--20082.obj" id="85_fyh84"]
+[ext_resource type="ArrayMesh" uid="uid://c1n3g8p3wvvly" path="res://Objects/20190701--20083.obj" id="86_0ctjy"]
+[ext_resource type="ArrayMesh" uid="uid://165ouuvd7uoi" path="res://Objects/20190701--20084.obj" id="87_2rmh6"]
+[ext_resource type="ArrayMesh" uid="uid://dqkgpbgkod5rj" path="res://Objects/20190701--20085.obj" id="88_sl84l"]
+[ext_resource type="ArrayMesh" uid="uid://daue50c3d7e03" path="res://Objects/20190701--20086.obj" id="89_cxdtp"]
+[ext_resource type="ArrayMesh" uid="uid://b4w3adk81iqi1" path="res://Objects/20190701--20087.obj" id="90_dwnnu"]
+[ext_resource type="ArrayMesh" uid="uid://bhaiuyn0f87w6" path="res://Objects/20190701--20088.obj" id="91_45ic0"]
+[ext_resource type="ArrayMesh" uid="uid://c6njqu4qm62x1" path="res://Objects/20190701--20089.obj" id="92_v32dn"]
+[ext_resource type="ArrayMesh" uid="uid://bmo4vk7whw30q" path="res://Objects/20190701--20090.obj" id="93_8axbd"]
+[ext_resource type="ArrayMesh" uid="uid://cv61c6pbhrg1" path="res://Objects/20190701--20091.obj" id="94_ivuf8"]
+[ext_resource type="ArrayMesh" uid="uid://mwhvgfbpv403" path="res://Objects/20190701--20092.obj" id="95_difog"]
+[ext_resource type="ArrayMesh" uid="uid://dj8rj0xtckkvg" path="res://Objects/20190701--20093.obj" id="96_4yppp"]
+[ext_resource type="ArrayMesh" uid="uid://bv0vnj2hhsnsv" path="res://Objects/20190701--20094.obj" id="97_1naoo"]
+[ext_resource type="ArrayMesh" uid="uid://b3e05aaw7csvb" path="res://Objects/20190701--20095.obj" id="98_u32vf"]
+[ext_resource type="ArrayMesh" uid="uid://j0uq6ylayxne" path="res://Objects/20190701--20096.obj" id="99_bgbrt"]
+[ext_resource type="ArrayMesh" uid="uid://bqf7d5orb1w0h" path="res://Objects/20190701--20097.obj" id="100_vopdt"]
+[ext_resource type="ArrayMesh" uid="uid://b3g534enedmom" path="res://Objects/20190701--20098.obj" id="101_5gp21"]
+[ext_resource type="ArrayMesh" uid="uid://ci6r5mjsb5lyu" path="res://Objects/20190701--20099.obj" id="102_v7u4v"]
+[ext_resource type="ArrayMesh" uid="uid://c56usxd11pjxi" path="res://Objects/20190701--20100.obj" id="103_wgcjq"]
+[ext_resource type="ArrayMesh" uid="uid://1by6nbbxw2xu" path="res://Objects/20190701--20101.obj" id="104_vxar8"]
+[ext_resource type="ArrayMesh" uid="uid://b0t55m0dd8j4v" path="res://Objects/20190701--20102.obj" id="105_fi7dt"]
+[ext_resource type="ArrayMesh" uid="uid://bbvydx75mca1r" path="res://Objects/20190701--20103.obj" id="106_n7p6i"]
+[ext_resource type="ArrayMesh" uid="uid://ngpsgyh00nui" path="res://Objects/20190701--20104.obj" id="107_xk3gg"]
+[ext_resource type="ArrayMesh" uid="uid://cgv3d8b7mvaqr" path="res://Objects/20190701--20105.obj" id="108_eqqmk"]
+[ext_resource type="ArrayMesh" uid="uid://dpujoous5ti0x" path="res://Objects/20190701--20106.obj" id="109_d167b"]
+[ext_resource type="ArrayMesh" uid="uid://dwm8xj1uxdsr3" path="res://Objects/20190701--20107.obj" id="110_k7ot1"]
+[ext_resource type="ArrayMesh" uid="uid://bi4kyskm0ouk8" path="res://Objects/20190701--20108.obj" id="111_7jh3f"]
+[ext_resource type="ArrayMesh" uid="uid://djskbkc42pa8" path="res://Objects/20190701--20109.obj" id="112_1nvnw"]
+[ext_resource type="ArrayMesh" uid="uid://dvqumrh2b7agp" path="res://Objects/20190701--20110.obj" id="113_4an8k"]
+[ext_resource type="ArrayMesh" uid="uid://bnr1gahggkxpf" path="res://Objects/20190701--20111.obj" id="114_i7nmb"]
+[ext_resource type="ArrayMesh" uid="uid://y11p2odyhhd7" path="res://Objects/20190701--20112.obj" id="115_jkbf1"]
+[ext_resource type="ArrayMesh" uid="uid://dv4t8bi2t6aja" path="res://Objects/20190701--20113.obj" id="116_yx21p"]
+[ext_resource type="ArrayMesh" uid="uid://csgihscxkvtk4" path="res://Objects/20190701--20114.obj" id="117_rx7tw"]
+[ext_resource type="ArrayMesh" uid="uid://ukdqulcgkh60" path="res://Objects/20190701--20115.obj" id="118_7pwd5"]
+[ext_resource type="ArrayMesh" uid="uid://eyblbsyi65bx" path="res://Objects/20190701--20116.obj" id="119_fxjt4"]
+[ext_resource type="ArrayMesh" uid="uid://db513kquya7lb" path="res://Objects/20190701--20117.obj" id="120_75c5g"]
+[ext_resource type="ArrayMesh" uid="uid://comdiyk17xlso" path="res://Objects/20190701--20118.obj" id="121_8aarb"]
+[ext_resource type="ArrayMesh" uid="uid://cyialshi5epuw" path="res://Objects/20190701--20119.obj" id="122_2q02d"]
+[ext_resource type="ArrayMesh" uid="uid://cixdb5p5arpu1" path="res://Objects/fish_tail3.obj" id="123_cqg7o"]
+[ext_resource type="PackedScene" uid="uid://xgn10pdyr3hp" path="res://slider.tscn" id="123_sn713"]
+[ext_resource type="PackedScene" uid="uid://nlf3vc0ja6sn" path="res://pause_icon.tscn" id="124_0kbek"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cvyeu"]
+
+[sub_resource type="Sky" id="Sky_53enn"]
+sky_material = SubResource("ProceduralSkyMaterial_cvyeu")
+
+[sub_resource type="Environment" id="Environment_c842c"]
+background_mode = 1
+sky = SubResource("Sky_53enn")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c48tx"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44rxm"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_leytu"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7v4k"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jh662"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jd2no"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpwdc"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6whsm"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke5xx"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfkoq"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b60h"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knhqj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33g36"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e1bec"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uanj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_078pl"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8r0f1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osbgw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2ty6"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji2fi"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tp22"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jdi3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_or3wu"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pp0wq"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vrcx5"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as12c"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ji2il"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cg7j"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vv1t1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2vcuf"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5n025"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcpje"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h1on3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nvvrf"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjw2f"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vh4pj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ac25k"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lmng"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ny2pa"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nqflh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ornpr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_437wl"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npolr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmkeq"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wb3r8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rx53"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ffew"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkn82"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfjq6"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6r1l7"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wxuj"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sjdrw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1xfl1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6u1pk"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fkkmy"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpqbw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plu6o"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2sbw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mrm8j"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkne4"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26ibr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h6qh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5834b"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qgmn"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o17u8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ibja"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3mqp7"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ydvl"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mptk"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8lbc"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t7gvl"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4chll"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5rt0"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p23p8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auein"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r18ra"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5m27"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_500i7"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q22e3"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujc02"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kk4l0"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kj2ll"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_262rp"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4wau"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_csf5o"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pbxxs"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cpm5f"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eb7i8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boiww"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdyht"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r883d"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udisp"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xtl41"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dr8ov"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mfnq1"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkwoy"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eufjo"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l40nh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wex5p"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5t7h"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm3bf"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg54m"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwc4d"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ojxh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heiyh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_miuwc"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72o5h"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eec3f"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nktkc"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md47n"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t66hb"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cqqtr"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px3df"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mursg"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oi1bn"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fiyy8"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jigmq"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osmjl"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g518v"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gqsvh"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_18nyw"]
+transparency = 1
+albedo_color = Color(0.196078, 0.196078, 0.196078, 0.0392157)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Main" type="Node3D" parent="."]
+script = ExtResource("1_2lh86")
+
+[node name="LightUp" type="DirectionalLight3D" parent="Main"]
+transform = Transform3D(-0.866025, -0.5, -2.18557e-08, 0, -4.37114e-08, 1, -0.5, 0.866025, 3.78552e-08, 0, 5, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+sky_mode = 1
+
+[node name="LightDown" type="DirectionalLight3D" parent="Main"]
+transform = Transform3D(-0.866025, 0.5, -2.18557e-08, 0, -4.37114e-08, -1, -0.5, -0.866025, 3.78552e-08, 0, -5, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+sky_mode = 1
+
+[node name="LightRight" type="DirectionalLight3D" parent="Main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5, 0, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+sky_mode = 1
+
+[node name="LightLeft" type="DirectionalLight3D" parent="Main"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 0, 0)
+light_energy = 16.0
+light_indirect_energy = 16.0
+light_volumetric_fog_energy = 16.0
+sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Main"]
+environment = SubResource("Environment_c842c")
+
+[node name="Camera3D" type="Camera3D" parent="Main"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0.359087, 2.22931)
+visible = false
+script = ExtResource("1_3hw58")
+
+[node name="20190701--20000" type="MeshInstance3D" parent="Main"]
+mesh = ExtResource("2_b2ucu")
+surface_material_override/0 = SubResource("StandardMaterial3D_c48tx")
+
+[node name="20190701--20001" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("3_kfy71")
+surface_material_override/0 = SubResource("StandardMaterial3D_44rxm")
+
+[node name="20190701--20002" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("4_intpq")
+surface_material_override/0 = SubResource("StandardMaterial3D_leytu")
+
+[node name="20190701--20003" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("5_x630w")
+surface_material_override/0 = SubResource("StandardMaterial3D_m7v4k")
+
+[node name="20190701--20004" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("6_8k2tj")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh662")
+
+[node name="20190701--20005" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("7_wlicp")
+surface_material_override/0 = SubResource("StandardMaterial3D_jd2no")
+
+[node name="20190701--20006" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("8_ugx2m")
+surface_material_override/0 = SubResource("StandardMaterial3D_wpwdc")
+
+[node name="20190701--20007" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("9_5dxge")
+surface_material_override/0 = SubResource("StandardMaterial3D_6whsm")
+
+[node name="20190701--20008" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("10_j6yj1")
+surface_material_override/0 = SubResource("StandardMaterial3D_ke5xx")
+
+[node name="20190701--20009" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("11_tp4i6")
+surface_material_override/0 = SubResource("StandardMaterial3D_mfkoq")
+
+[node name="20190701--20010" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("12_mxkdu")
+surface_material_override/0 = SubResource("StandardMaterial3D_5b60h")
+
+[node name="20190701--20011" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("13_tleel")
+surface_material_override/0 = SubResource("StandardMaterial3D_knhqj")
+
+[node name="20190701--20012" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("14_nh2yf")
+surface_material_override/0 = SubResource("StandardMaterial3D_33g36")
+
+[node name="20190701--20013" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("15_u3mra")
+surface_material_override/0 = SubResource("StandardMaterial3D_e1bec")
+
+[node name="20190701--20014" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("16_a6l5n")
+surface_material_override/0 = SubResource("StandardMaterial3D_8uanj")
+
+[node name="20190701--20015" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("17_r60gn")
+surface_material_override/0 = SubResource("StandardMaterial3D_078pl")
+
+[node name="20190701--20016" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("18_5vi2v")
+surface_material_override/0 = SubResource("StandardMaterial3D_8r0f1")
+
+[node name="20190701--20017" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("19_yp20c")
+surface_material_override/0 = SubResource("StandardMaterial3D_osbgw")
+
+[node name="20190701--20018" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("20_k0pvt")
+surface_material_override/0 = SubResource("StandardMaterial3D_j2ty6")
+
+[node name="20190701--20019" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("21_tnwq4")
+surface_material_override/0 = SubResource("StandardMaterial3D_ji2fi")
+
+[node name="20190701--20020" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("22_ikxff")
+surface_material_override/0 = SubResource("StandardMaterial3D_6tp22")
+
+[node name="20190701--20021" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("23_8gb10")
+surface_material_override/0 = SubResource("StandardMaterial3D_0jdi3")
+
+[node name="20190701--20022" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("24_5i1vj")
+surface_material_override/0 = SubResource("StandardMaterial3D_or3wu")
+
+[node name="20190701--20023" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("25_1a03p")
+surface_material_override/0 = SubResource("StandardMaterial3D_pp0wq")
+
+[node name="20190701--20024" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("26_i5lww")
+surface_material_override/0 = SubResource("StandardMaterial3D_vrcx5")
+
+[node name="20190701--20025" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("27_ivyhy")
+surface_material_override/0 = SubResource("StandardMaterial3D_as12c")
+
+[node name="20190701--20026" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("28_7lvuc")
+surface_material_override/0 = SubResource("StandardMaterial3D_ji2il")
+
+[node name="20190701--20027" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("29_34r07")
+surface_material_override/0 = SubResource("StandardMaterial3D_0cg7j")
+
+[node name="20190701--20028" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("30_u72y4")
+surface_material_override/0 = SubResource("StandardMaterial3D_vv1t1")
+
+[node name="20190701--20029" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("31_esj8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_2vcuf")
+
+[node name="20190701--20030" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("32_xvjp4")
+surface_material_override/0 = SubResource("StandardMaterial3D_5n025")
+
+[node name="20190701--20031" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("33_7o6ss")
+surface_material_override/0 = SubResource("StandardMaterial3D_kcpje")
+
+[node name="20190701--20032" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("34_s6k38")
+surface_material_override/0 = SubResource("StandardMaterial3D_h1on3")
+
+[node name="20190701--20033" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("35_2gel5")
+surface_material_override/0 = SubResource("StandardMaterial3D_nvvrf")
+
+[node name="20190701--20034" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("36_xb072")
+surface_material_override/0 = SubResource("StandardMaterial3D_kjw2f")
+
+[node name="20190701--20035" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("37_nffsu")
+surface_material_override/0 = SubResource("StandardMaterial3D_vh4pj")
+
+[node name="20190701--20036" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("38_01hrq")
+surface_material_override/0 = SubResource("StandardMaterial3D_ac25k")
+
+[node name="20190701--20037" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("39_n2x6o")
+surface_material_override/0 = SubResource("StandardMaterial3D_7lmng")
+
+[node name="20190701--20038" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("40_ax70f")
+surface_material_override/0 = SubResource("StandardMaterial3D_ny2pa")
+
+[node name="20190701--20039" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("41_rgdoc")
+surface_material_override/0 = SubResource("StandardMaterial3D_nqflh")
+
+[node name="20190701--20040" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("42_ppcbg")
+surface_material_override/0 = SubResource("StandardMaterial3D_ornpr")
+
+[node name="20190701--20041" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("43_xi2tg")
+surface_material_override/0 = SubResource("StandardMaterial3D_437wl")
+
+[node name="20190701--20042" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("44_mndb2")
+surface_material_override/0 = SubResource("StandardMaterial3D_npolr")
+
+[node name="20190701--20043" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("45_q1a4b")
+surface_material_override/0 = SubResource("StandardMaterial3D_nmkeq")
+
+[node name="20190701--20044" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("46_xkfby")
+surface_material_override/0 = SubResource("StandardMaterial3D_wb3r8")
+
+[node name="20190701--20045" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("47_tpm2t")
+surface_material_override/0 = SubResource("StandardMaterial3D_7rx53")
+
+[node name="20190701--20046" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("48_wmkli")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ffew")
+
+[node name="20190701--20047" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("49_sheol")
+surface_material_override/0 = SubResource("StandardMaterial3D_xkn82")
+
+[node name="20190701--20048" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("50_a7hpl")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfjq6")
+
+[node name="20190701--20049" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("51_eakk2")
+surface_material_override/0 = SubResource("StandardMaterial3D_6r1l7")
+
+[node name="20190701--20050" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("52_maigv")
+surface_material_override/0 = SubResource("StandardMaterial3D_4wxuj")
+
+[node name="20190701--20051" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("53_by3wt")
+surface_material_override/0 = SubResource("StandardMaterial3D_sjdrw")
+
+[node name="20190701--20052" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("54_2ja2f")
+surface_material_override/0 = SubResource("StandardMaterial3D_1xfl1")
+
+[node name="20190701--20053" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("55_dvkth")
+surface_material_override/0 = SubResource("StandardMaterial3D_6u1pk")
+
+[node name="20190701--20054" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("56_jcdb0")
+surface_material_override/0 = SubResource("StandardMaterial3D_fkkmy")
+
+[node name="20190701--20055" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("57_7s7u2")
+surface_material_override/0 = SubResource("StandardMaterial3D_cpqbw")
+
+[node name="20190701--20056" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("58_86fxr")
+surface_material_override/0 = SubResource("StandardMaterial3D_plu6o")
+
+[node name="20190701--20057" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("59_gynm7")
+surface_material_override/0 = SubResource("StandardMaterial3D_q2sbw")
+
+[node name="20190701--20058" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("60_pkkxf")
+surface_material_override/0 = SubResource("StandardMaterial3D_mrm8j")
+
+[node name="20190701--20059" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("61_m3xm1")
+surface_material_override/0 = SubResource("StandardMaterial3D_mkne4")
+
+[node name="20190701--20060" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("62_x6bhj")
+surface_material_override/0 = SubResource("StandardMaterial3D_26ibr")
+
+[node name="20190701--20061" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("64_xivoq")
+surface_material_override/0 = SubResource("StandardMaterial3D_1h6qh")
+
+[node name="20190701--20062" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("65_a2uk0")
+surface_material_override/0 = SubResource("StandardMaterial3D_5834b")
+
+[node name="20190701--20063" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("66_4dg4b")
+surface_material_override/0 = SubResource("StandardMaterial3D_8qgmn")
+
+[node name="20190701--20064" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("67_are2j")
+surface_material_override/0 = SubResource("StandardMaterial3D_o17u8")
+
+[node name="20190701--20065" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("68_gfugt")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ibja")
+
+[node name="20190701--20066" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("69_34dop")
+surface_material_override/0 = SubResource("StandardMaterial3D_3mqp7")
+
+[node name="20190701--20067" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("70_a00me")
+surface_material_override/0 = SubResource("StandardMaterial3D_6ydvl")
+
+[node name="20190701--20068" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("71_rc5te")
+surface_material_override/0 = SubResource("StandardMaterial3D_7mptk")
+
+[node name="20190701--20069" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("72_jca6e")
+surface_material_override/0 = SubResource("StandardMaterial3D_l8lbc")
+
+[node name="20190701--20070" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("73_slivb")
+surface_material_override/0 = SubResource("StandardMaterial3D_t7gvl")
+
+[node name="20190701--20071" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("74_243sc")
+surface_material_override/0 = SubResource("StandardMaterial3D_4chll")
+
+[node name="20190701--20072" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("75_hd858")
+surface_material_override/0 = SubResource("StandardMaterial3D_i5rt0")
+
+[node name="20190701--20073" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("76_c0e7p")
+surface_material_override/0 = SubResource("StandardMaterial3D_p23p8")
+
+[node name="20190701--20074" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("77_g8i71")
+surface_material_override/0 = SubResource("StandardMaterial3D_auein")
+
+[node name="20190701--20075" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("78_tsnxq")
+surface_material_override/0 = SubResource("StandardMaterial3D_r18ra")
+
+[node name="20190701--20076" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("79_pk6ue")
+surface_material_override/0 = SubResource("StandardMaterial3D_e5m27")
+
+[node name="20190701--20077" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("80_nhcbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_500i7")
+
+[node name="20190701--20078" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("81_1joxb")
+surface_material_override/0 = SubResource("StandardMaterial3D_q22e3")
+
+[node name="20190701--20079" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("82_7pgg6")
+surface_material_override/0 = SubResource("StandardMaterial3D_ujc02")
+
+[node name="20190701--20080" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("83_aom0j")
+surface_material_override/0 = SubResource("StandardMaterial3D_kk4l0")
+
+[node name="20190701--20081" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("84_e6pm3")
+surface_material_override/0 = SubResource("StandardMaterial3D_kj2ll")
+
+[node name="20190701--20082" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("85_fyh84")
+surface_material_override/0 = SubResource("StandardMaterial3D_262rp")
+
+[node name="20190701--20083" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("86_0ctjy")
+surface_material_override/0 = SubResource("StandardMaterial3D_l4wau")
+
+[node name="20190701--20084" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("87_2rmh6")
+surface_material_override/0 = SubResource("StandardMaterial3D_csf5o")
+
+[node name="20190701--20085" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("88_sl84l")
+surface_material_override/0 = SubResource("StandardMaterial3D_pbxxs")
+
+[node name="20190701--20086" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("89_cxdtp")
+surface_material_override/0 = SubResource("StandardMaterial3D_cpm5f")
+
+[node name="20190701--20087" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("90_dwnnu")
+surface_material_override/0 = SubResource("StandardMaterial3D_eb7i8")
+
+[node name="20190701--20088" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("91_45ic0")
+surface_material_override/0 = SubResource("StandardMaterial3D_boiww")
+
+[node name="20190701--20089" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("92_v32dn")
+surface_material_override/0 = SubResource("StandardMaterial3D_vdyht")
+
+[node name="20190701--20090" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("93_8axbd")
+surface_material_override/0 = SubResource("StandardMaterial3D_r883d")
+
+[node name="20190701--20091" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("94_ivuf8")
+surface_material_override/0 = SubResource("StandardMaterial3D_udisp")
+
+[node name="20190701--20092" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("95_difog")
+surface_material_override/0 = SubResource("StandardMaterial3D_xtl41")
+
+[node name="20190701--20093" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("96_4yppp")
+surface_material_override/0 = SubResource("StandardMaterial3D_dr8ov")
+
+[node name="20190701--20094" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("97_1naoo")
+surface_material_override/0 = SubResource("StandardMaterial3D_mfnq1")
+
+[node name="20190701--20095" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("98_u32vf")
+surface_material_override/0 = SubResource("StandardMaterial3D_gkwoy")
+
+[node name="20190701--20096" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("99_bgbrt")
+surface_material_override/0 = SubResource("StandardMaterial3D_eufjo")
+
+[node name="20190701--20097" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("100_vopdt")
+surface_material_override/0 = SubResource("StandardMaterial3D_l40nh")
+
+[node name="20190701--20098" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("101_5gp21")
+surface_material_override/0 = SubResource("StandardMaterial3D_wex5p")
+
+[node name="20190701--20099" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("102_v7u4v")
+surface_material_override/0 = SubResource("StandardMaterial3D_k5t7h")
+
+[node name="20190701--20100" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("103_wgcjq")
+surface_material_override/0 = SubResource("StandardMaterial3D_lm3bf")
+
+[node name="20190701--20101" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("104_vxar8")
+surface_material_override/0 = SubResource("StandardMaterial3D_dg54m")
+
+[node name="20190701--20102" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("105_fi7dt")
+surface_material_override/0 = SubResource("StandardMaterial3D_rwc4d")
+
+[node name="20190701--20103" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("106_n7p6i")
+surface_material_override/0 = SubResource("StandardMaterial3D_2ojxh")
+
+[node name="20190701--20104" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("107_xk3gg")
+surface_material_override/0 = SubResource("StandardMaterial3D_heiyh")
+
+[node name="20190701--20105" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("108_eqqmk")
+surface_material_override/0 = SubResource("StandardMaterial3D_miuwc")
+
+[node name="20190701--20106" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("109_d167b")
+surface_material_override/0 = SubResource("StandardMaterial3D_72o5h")
+
+[node name="20190701--20107" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("110_k7ot1")
+surface_material_override/0 = SubResource("StandardMaterial3D_eec3f")
+
+[node name="20190701--20108" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("111_7jh3f")
+surface_material_override/0 = SubResource("StandardMaterial3D_nktkc")
+
+[node name="20190701--20109" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("112_1nvnw")
+surface_material_override/0 = SubResource("StandardMaterial3D_md47n")
+
+[node name="20190701--20110" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("113_4an8k")
+surface_material_override/0 = SubResource("StandardMaterial3D_t66hb")
+
+[node name="20190701--20111" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("114_i7nmb")
+surface_material_override/0 = SubResource("StandardMaterial3D_cqqtr")
+
+[node name="20190701--20112" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("115_jkbf1")
+surface_material_override/0 = SubResource("StandardMaterial3D_px3df")
+
+[node name="20190701--20113" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("116_yx21p")
+surface_material_override/0 = SubResource("StandardMaterial3D_mursg")
+
+[node name="20190701--20114" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("117_rx7tw")
+surface_material_override/0 = SubResource("StandardMaterial3D_oi1bn")
+
+[node name="20190701--20115" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("118_7pwd5")
+surface_material_override/0 = SubResource("StandardMaterial3D_fiyy8")
+
+[node name="20190701--20116" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("119_fxjt4")
+surface_material_override/0 = SubResource("StandardMaterial3D_jigmq")
+
+[node name="20190701--20117" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("120_75c5g")
+surface_material_override/0 = SubResource("StandardMaterial3D_osmjl")
+
+[node name="20190701--20118" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("121_8aarb")
+surface_material_override/0 = SubResource("StandardMaterial3D_g518v")
+
+[node name="20190701--20119" type="MeshInstance3D" parent="Main"]
+visible = false
+mesh = ExtResource("122_2q02d")
+surface_material_override/0 = SubResource("StandardMaterial3D_gqsvh")
+
+[node name="fishtail" type="MeshInstance3D" parent="Main"]
+transform = Transform3D(0.007, 0, 0, 0, 0.007, 0, 0, 0, 0.007, 0, 0, 0)
+mesh = ExtResource("123_cqg7o")
+surface_material_override/0 = SubResource("StandardMaterial3D_18nyw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Slider" parent="CanvasLayer" instance=ExtResource("123_sn713")]
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource("124_0kbek")]

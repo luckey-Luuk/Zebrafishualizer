@@ -30,6 +30,7 @@ def save_mesh(mesh, foldername, filename, overwrite=False):
 
 
 def create_pointclouds(tif):
+    #TODO: get coordinates of cells if not saved already
     imarray = np.array(tifffile.imread(tif)) # read tif file
     num_layers, height, width = imarray.shape[0], imarray.shape[1], imarray.shape[2] # initialize number of layers, height and width
     min_cell = sorted(set(imarray.flatten()))[1] # get lowest cell label (exclude empty space)
@@ -79,7 +80,6 @@ def create_cell_meshes(pointclouds, c, shortened_filename, save_folder, plot_cel
 def create_frame_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_frames=np.inf):
     for filename in os.listdir(source):
         tif = os.path.join(source, filename) # get file path
-        
         if not tif.endswith(".tif"): # check if file is a tif file
             print("Not a tif file: " + tif)
             return

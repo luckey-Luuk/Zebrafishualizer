@@ -1,3 +1,8 @@
+"""
+This script creates point clouds and meshes of the cells and frame in the first number of tif files (frames) in a specific folder 
+and plots and/or saves the meshes to a specific location.
+"""
+
 # import sys #TODO: run from command line
 import os # file handling
 import numpy as np # arrays
@@ -173,7 +178,7 @@ def create_frame_meshes(pointclouds, min_cell, max_cell, save_folder, save_name,
 
 def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_frames=np.inf):
     """
-    Create point clouds and meshes of the cells in the first number of tif files (frames) in a folder 
+    Create point clouds and meshes of the cells and frame in the first number of tif files (frames) in a specific folder 
     and plot and/or save the meshes to a specific location.
 
     Parameters

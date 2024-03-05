@@ -1,4 +1,6 @@
-# open tif files in imagej and save to usable format
+"""
+Open tif files in imagej in order to save them in a usable format.
+"""
 
 import os
 import imagej

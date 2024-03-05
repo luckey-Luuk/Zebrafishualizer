@@ -95,26 +95,26 @@ def create_mesh(save_name, save_folder, plot_cells=False, plot_frames=False, plo
         save_mesh(frame, save_folder, shortened_filename, overwrite)
 
 
-def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_meshes=np.inf):
+def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_frames=np.inf):
     for filename in os.listdir(source):
         create_mesh(filename, save_folder, plot_cells, plot_frames, plot_points, overwrite)
 
-        n_meshes -= 1
-        if n_meshes <= 0:
+        n_frames -= 1
+        if n_frames <= 0:
             break
 
 
 if __name__ == "__main__":
     # source = sys.argv[1]
     # save_folder = sys.argv[2]
-    source      = "../Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder containing labeled tif files
-    save_folder = "../Data/meshes/20190701--2" # folder to save mesh files
-    plot_cells  = False # plot each individual cell
-    plot_frames = True # plot whole frames
-    plot_points = True # plot point clouds
-    overwrite   = False # overwrite existing files
-    n_meshes    = np.inf # maximum number of meshes to create
+    source      = "./Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" #folder with labeled imagej tif files
+    save_folder = "./Data/meshes/20190701--2" #folder to save mesh files
+    plot_cells  = False #plot each individual cell
+    plot_frames = False #plot whole frames
+    plot_points = False #plot point clouds
+    overwrite   = False #overwrite existing files
+    n_frames    = 2 #np.inf #maximum number of frames to create meshes of
 
-    create_meshes(source, save_folder, plot_cells, plot_frames, plot_points, overwrite, n_meshes)
+    create_meshes(source, save_folder, plot_cells, plot_frames, plot_points, overwrite, n_frames)
 
     # python3 mesh.py Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej Data/meshes/20190701--2

@@ -12,7 +12,7 @@ def open_track_dictionary(save_file):
     return dictionary
 
 # tracksavedir = "F://Cell tracking//3D cell segmentation//10 tracking code//final pkl file//"
-tracksavedir = "Data/3D tracking data to visualize/"
+tracksavedir = "Data/original/3D tracking data to visualize/"
 
 refdistance8 = open_track_dictionary(tracksavedir + "refdistance_29layer_linkage.pkl")
 print(refdistance8["20190701--2"])

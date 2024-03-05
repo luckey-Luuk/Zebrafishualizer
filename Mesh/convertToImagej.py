@@ -6,8 +6,8 @@ ij = imagej.init()
 
 overwrite = False # change to True to overwrite existing files
 
-source = "../Data/original/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a" # folder containing original files
-target_folder = "../Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder to save converted files
+source = "./Data/original/3D tracking data to visualize/20190701--2_inter_29layers_mask_3a" # folder containing original files
+target_folder = "./Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej" # folder to save converted files
 
 for filename in os.listdir(source):
     target_file = target_folder + '/' + os.path.splitext(filename)[0] + "_imagej.tif"

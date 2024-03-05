@@ -57,41 +57,29 @@ def create_pointclouds(tif):
     return clouds, min_cell, max_cell
 
 
-def create_mesh(pointclouds, min_cell, max_cell, shortened_filename, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False):
-    frame = pv.PolyData() # initialize mesh with all cells
+def create_cell_meshes(pointclouds, c, shortened_filename, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False):
+    # cell_mesh = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh
+    cell_mesh = pointclouds[c].reconstruct_surface(sample_spacing=1) # use surface reconstruction to create mesh
+    # cell_mesh = cell_mesh.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
 
-    #create mesh of each cell
-    for c in range(min_cell, max_cell+1):
-        if pointclouds[c]:
-            # cell = clouds[c].delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay to create mesh
-            cell = pointclouds[c].reconstruct_surface(sample_spacing=1) # use surface reconstruction to create mesh
-            # cell = cell.delaunay_3d(alpha=3, tol=0.1, offset=2.5).extract_geometry() # use delaunay on mesh
+    #Fix mesh TODO: check if this is necessary
+    meshfix = mf.MeshFix(cell_mesh)
+    meshfix.repair()
+    cell_mesh = meshfix.mesh
 
-            #Fix mesh TODO: check if this is necessary
-            meshfix = mf.MeshFix(cell)
-            meshfix.repair()
-            cell = meshfix.mesh
+    smoothed_mesh = cell_mesh.smooth_taubin(n_iter=50, pass_band=0.1) # smooth mesh
 
-            smoothed_cell = cell.smooth_taubin(n_iter=50, pass_band=0.1) # smooth mesh
+    #Save and plot mesh
+    if plot_cells:
+        plot_mesh(smoothed_mesh, [pointclouds[c]], plot_points, shortened_filename + '-' + str(c))
 
-            #Save and plot cell mesh
-            if plot_cells:
-                plot_mesh(smoothed_cell, [pointclouds[c]], plot_points, shortened_filename + '-' + str(c))
-
-            save_mesh(smoothed_cell, save_folder + '/' + shortened_filename, shortened_filename + '-' + str(c), overwrite)
-
-            frame = frame.merge(smoothed_cell) # add cell mesh to frame mesh
-
-    #Save and plot frame mesh
-    if plot_frames:
-        plot_mesh(frame, clouds, plot_points, shortened_filename)
-
-    save_mesh(frame, save_folder, shortened_filename, overwrite)
+    save_mesh(smoothed_mesh, save_folder + '/' + shortened_filename, shortened_filename + '-' + str(c), overwrite)
 
 
-def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_frames=np.inf):
+def create_frame_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot_points=False, overwrite=False, n_frames=np.inf):
     for filename in os.listdir(source):
         tif = os.path.join(source, filename) # get file path
+        
         if not tif.endswith(".tif"): # check if file is a tif file
             print("Not a tif file: " + tif)
             return
@@ -100,10 +88,13 @@ def create_meshes(source, save_folder, plot_cells=False, plot_frames=False, plot
             shortened_filename = os.path.splitext(filename)[0].split('_')[0] # shorten filename for saving
 
             pointclouds, min_cell, max_cell = create_pointclouds(tif) # create pointclouds from tif
-            create_mesh(pointclouds, min_cell, max_cell, shortened_filename, save_folder, plot_cells, plot_frames, plot_points, overwrite) # create mesh from pointclouds
+
+            for cell in range(min_cell, max_cell+1): #create meshes for each cell
+                if pointclouds[cell]:
+                    create_cell_meshes(pointclouds, cell, shortened_filename, save_folder, plot_cells, plot_frames, plot_points, overwrite)
 
         n_frames -= 1
-        if n_frames <= 0:
+        if n_frames <= 0: # stop if maximum number of frames is reached
             break
 
 
@@ -118,6 +109,6 @@ if __name__ == "__main__":
     overwrite   = False #overwrite existing files
     n_frames    = 2 #np.inf #maximum number of frames to create meshes of
 
-    create_meshes(source, save_folder, plot_cells, plot_frames, plot_points, overwrite, n_frames)
+    create_frame_meshes(source, save_folder, plot_cells, plot_frames, plot_points, overwrite, n_frames)
 
     # python3 mesh.py Data/convertedToImagej/20190701--2_inter_29layers_mask_imagej Data/meshes/20190701--2
